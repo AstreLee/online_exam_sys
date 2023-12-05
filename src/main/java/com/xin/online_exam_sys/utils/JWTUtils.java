@@ -25,7 +25,7 @@ public class JWTUtils {
                 // 设置用户名
                 .setSubject(username)
                 // 设置过期时间
-                .setExpiration(new Date(System.currentTimeMillis() + JWTConfig.expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + JWTConfig.expiration * 1000))
                 // 签名算法和密钥
                 .signWith(SignatureAlgorithm.HS512, JWTConfig.secret)
                 .compact();

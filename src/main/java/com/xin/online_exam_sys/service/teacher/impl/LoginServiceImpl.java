@@ -8,7 +8,6 @@ import com.xin.online_exam_sys.pojo.response.ResultVO;
 import com.xin.online_exam_sys.service.teacher.LoginService;
 import com.xin.online_exam_sys.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,8 +29,9 @@ public class LoginServiceImpl implements LoginService {
         Teacher t = loginMapper.selectByIdAndPasswd(userId, userPasswd);
         // 1. t为空说明账号或者密码不正确
         if (t == null) {
-            Integer errCode = HttpStatusCode.UNAUTHORIZED.getCode();
-            String errMsg = HttpStatusCode.UNAUTHORIZED.getEnMsg();
+            Integer errCode = HttpStatusCode.BAD_REQUEST.getCode();
+            System.out.println(errCode);
+            String errMsg = "用户名或密码不正确";
             return new ResultVO(errCode, errMsg);
         } else {
             // 2. 账号密码正确授权token

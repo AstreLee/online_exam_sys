@@ -30,7 +30,7 @@ jwt:
 # Mybatis-plus相关配置
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper所对应的XML文件位置）
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
   # 以下配置均有默认值,可以不设置
   global-config:
     db-config:

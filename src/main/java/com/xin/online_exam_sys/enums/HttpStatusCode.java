@@ -59,11 +59,15 @@ public enum HttpStatusCode {
 
 
     //构造函数
-    HttpStatusCode(int code, String enMessage, String zhMessage) {
 
+
+    HttpStatusCode(Integer code, String enMsg, String cnMsg) {
+        this.code = code;
+        this.enMsg = enMsg;
+        this.cnMsg = cnMsg;
     }
 
-    private Integer code;
-    private String enMsg;
-    private String cnMsg;
+    private final Integer code;
+    private final String enMsg;
+    private final String cnMsg;
 }

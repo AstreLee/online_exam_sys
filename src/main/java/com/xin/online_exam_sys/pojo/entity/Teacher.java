@@ -3,7 +3,6 @@ package com.xin.online_exam_sys.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xin.online_exam_sys.enums.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +32,7 @@ public class Teacher {
     private String tPasswd;
 
     @TableField("t_gender")
-    private GenderEnum tGender;
+    private Integer tGender;
 
     @TableField("t_age")
     private Integer tAge;
