@@ -22,6 +22,10 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws SignatureException {
+        // if preflight, return true
+        if ("OPTIONS".equals(request.getMethod())) {
+            return true;
+        }
         // 获取token
         String token = request.getHeader(JWTConfig.tokenHeader);
         // token为空抛出异常

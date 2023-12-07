@@ -13,4 +13,5 @@ import org.springframework.stereotype.Service;
  */
 public interface LoginService {
     ResultVO getByIdAndPasswd(UserLoginVO userLoginVO);
+    ResultVO getUserInfo();
 }

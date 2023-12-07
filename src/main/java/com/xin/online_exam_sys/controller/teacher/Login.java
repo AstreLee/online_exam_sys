@@ -19,8 +19,14 @@ import org.springframework.web.bind.annotation.*;
 public class Login {
     @Autowired
     private LoginService loginService;
+
     @PostMapping("/login")
     public ResultVO login(@RequestBody UserLoginVO userLoginVO) {
         return loginService.getByIdAndPasswd(userLoginVO);
+    }
+
+    @GetMapping("/info")
+    public ResultVO getUserInfo() {
+        return loginService.getUserInfo();
     }
 }

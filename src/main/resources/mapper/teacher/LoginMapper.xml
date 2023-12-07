@@ -7,4 +7,10 @@
         SELECT * FROM teacher
         WHERE t_id = #{userId} AND t_passwd = #{userPasswd}
     </select>
+
+    <select id="selectUserInfo" resultType="userInfo">
+        SELECT t_name AS name, t_img_url AS avatar
+        FROM teacher
+        WHERE t_id = #{userId};
+    </select>
 </mapper>
