@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper">
+    <select id="selectGradeOptions" resultType="integer">
+        SELECT DISTINCT c.class_grade
+        FROM student s
+                 JOIN
+             class c ON s.class_id = c.class_id
+                 JOIN
+             teacher_class_course tcc ON c.class_id = tcc.class_id
+        WHERE stu_id = COALESCE(#{userId}, stu_id)
+          AND c.class_id = COALESCE(#{classId}, c.class_id)
+          AND tcc.t_id = #{tId};
+    </select>
+
+    <select id="selectClassOptions" resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption">
+        SELECT DISTINCT c.class_name AS "label",
+                        c.class_id   AS "value"
+        FROM student s
+                 JOIN
+             class c ON s.class_id = c.class_id
+                 JOIN
+             teacher_class_course tcc ON c.class_id = tcc.class_id
+        WHERE stu_id = COALESCE(#{userId}, stu_id)
+          AND c.class_grade = COALESCE(#{grade}, c.class_grade)
+          AND tcc.t_id = #{tId};
+    </select>
+
+    <select id="selectList" resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo">
+        SELECT s.stu_id        AS "userId",
+               s.stu_name      AS "userName",
+               s.stu_age       AS "age",
+               s.stu_gender    AS "gender",
+               s.stu_phone     AS "phone",
+               s.stu_email     AS "email",
+               c.class_grade   AS "grade",
+               c2.college_name AS "collegeName",
+               m.major_name    AS "majorName",
+               c.class_name    AS "className"
+        FROM student s
+                 JOIN
+             class c ON s.class_id = c.class_id
+                 JOIN
+             major m on m.major_id = c.major_id
+                 JOIN
+             college c2 on c2.college_id = m.college_id
+                 JOIN
+             teacher_class_course tcc ON c.class_id = tcc.class_id
+        WHERE stu_id = COALESCE(#{userId}, stu_id)
+          AND c.class_grade = COALESCE(#{grade}, c.class_grade)
+          AND c.class_id = COALESCE(#{classId}, c.class_id)
+          AND tcc.t_id = #{tId};
+    </select>
+</mapper>

@@ -6,8 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface LoginMapper {
+public interface TeacherLoginMapper {
     Teacher selectByIdAndPasswd(@Param("userId") Long userId, @Param("userPasswd") String userPasswd);
-
     UserInfo selectUserInfo(@Param("userId") Long userId);
 }

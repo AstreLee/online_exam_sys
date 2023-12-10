@@ -1,13 +1,12 @@
-package com.xin.online_exam_sys.service.teacher.impl;
+package com.xin.online_exam_sys.service.teacher.Impl;
 
-import com.xin.online_exam_sys.config.JWTConfig;
-import com.xin.online_exam_sys.dao.teacher.LoginMapper;
+import com.xin.online_exam_sys.dao.teacher.TeacherLoginMapper;
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import com.xin.online_exam_sys.pojo.entity.Teacher;
 import com.xin.online_exam_sys.pojo.request.UserLoginVO;
 import com.xin.online_exam_sys.pojo.response.ResultVO;
 import com.xin.online_exam_sys.pojo.response.UserInfo;
-import com.xin.online_exam_sys.service.teacher.LoginService;
+import com.xin.online_exam_sys.service.teacher.TeacherLoginService;
 import com.xin.online_exam_sys.utils.JWTContext;
 import com.xin.online_exam_sys.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +19,16 @@ import org.springframework.stereotype.Service;
  * @ide : IntelliJ IDEA
  */
 @Service
-public class LoginServiceImpl implements LoginService {
+public class TeacherLoginServiceImpl implements TeacherLoginService {
     @Autowired
-    private LoginMapper loginMapper;
+    private TeacherLoginMapper teacherLoginMapper;
 
     @Override
     public ResultVO getByIdAndPasswd(UserLoginVO userLoginVO) {
         // 根据id和password查询teacher表
         Long userId = userLoginVO.getUserId();
         String userPasswd = userLoginVO.getUserPasswd();
-        Teacher t = loginMapper.selectByIdAndPasswd(userId, userPasswd);
+        Teacher t = teacherLoginMapper.selectByIdAndPasswd(userId, userPasswd);
         // 1. t为空说明账号或者密码不正确
         if (t == null) {
             Integer errCode = HttpStatusCode.BAD_REQUEST.getCode();
@@ -50,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
         Long userId = JWTContext.getCurrentId();
         System.out.println(userId);
         // 根据用户ID查询用户名和头像
-        UserInfo userInfo = loginMapper.selectUserInfo(userId);
+        UserInfo userInfo = teacherLoginMapper.selectUserInfo(userId);
         if (userInfo == null) {
             // 用户信息为空
             Integer errCode = HttpStatusCode.BAD_REQUEST.getCode();
