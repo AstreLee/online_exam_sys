@@ -3,6 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper">
+    <update id="updateInfoById">
+        UPDATE
+            student
+        SET
+            stu_phone = #{phone},
+            stu_email = #{email}
+        WHERE
+            stu_id = #{userId};
+    </update>
+
     <select id="selectGradeOptions" resultType="integer">
         SELECT DISTINCT c.class_grade
         FROM student s
@@ -52,5 +62,17 @@
           AND c.class_grade = COALESCE(#{grade}, c.class_grade)
           AND c.class_id = COALESCE(#{classId}, c.class_id)
           AND tcc.t_id = #{tId};
+    </select>
+
+    <select id="selectInfoById" resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo">
+        SELECT
+            stu_id AS "userId",
+            stu_name AS "userName",
+            stu_phone AS "phone",
+            stu_email AS "email"
+        FROM
+            student
+        WHERE
+            stu_id = #{userId};
     </select>
 </mapper>

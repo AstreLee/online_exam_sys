@@ -3,6 +3,7 @@ package com.xin.online_exam_sys.service.teacher;
 import com.xin.online_exam_sys.pojo.request.teacher.TeacherQueryInfoVO;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo;
+import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,8 @@ public interface TeacherUserListService {
     List<TeacherSelectOption> getClassOptions(TeacherQueryInfoVO teacherQueryInfoVO);
 
     Map<String, Object> getList(TeacherQueryInfoVO teacherQueryInfoVO);
+
+    TeacherUserUpdateInfo getInfoById(Long userId);
+
+    void updateInfoById(Long userId, TeacherUserUpdateInfo teacherUserUpdateInfo);
 }

@@ -3,18 +3,11 @@ package com.xin.online_exam_sys.controller.teacher;
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import com.xin.online_exam_sys.pojo.request.teacher.TeacherQueryInfoVO;
 import com.xin.online_exam_sys.pojo.response.ResultVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo;
+import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo;
 import com.xin.online_exam_sys.service.teacher.TeacherUserListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,24 +25,30 @@ public class TeacherUserList {
     @PostMapping("/user/list/gradeOption")
     public ResultVO getGradeOption(@RequestBody TeacherQueryInfoVO teacherQueryInfoVO) {
         Object data = teacherUserListService.getGradeOptions(teacherQueryInfoVO);
-        return new ResultVO(HttpStatusCode.OK.getCode(),
-                HttpStatusCode.OK.getEnMsg(),
-                data);
+        return ResultVO.success(HttpStatusCode.OK, data);
     }
 
     @PostMapping("/user/list/classOption")
     public ResultVO getClassOption(@RequestBody TeacherQueryInfoVO teacherQueryInfoVO) {
         Object data = teacherUserListService.getClassOptions(teacherQueryInfoVO);
-        return new ResultVO(HttpStatusCode.OK.getCode(),
-                HttpStatusCode.OK.getEnMsg(),
-                data);
+        return ResultVO.success(HttpStatusCode.OK, data);
     }
 
     @PostMapping("/user/list")
     public ResultVO getList(@RequestBody TeacherQueryInfoVO teacherQueryInfoVO) {
         Map<String, Object> data = teacherUserListService.getList(teacherQueryInfoVO);
-        return new ResultVO(HttpStatusCode.OK.getCode(),
-                HttpStatusCode.OK.getEnMsg(),
-                data);
+        return ResultVO.success(HttpStatusCode.OK, data);
+    }
+
+    @GetMapping("/user/list/userInfo/{id}")
+    public ResultVO getUserInfo(@PathVariable("id") Long userId) {
+        Object data = teacherUserListService.getInfoById(userId);
+        return ResultVO.success(HttpStatusCode.OK, data);
+    }
+
+    @PutMapping("/user/list/userInfo/{id}")
+    public ResultVO updateUserInfo(@PathVariable("id") Long userId, @RequestBody TeacherUserUpdateInfo teacherUserUpdateInfo) {
+        teacherUserListService.updateInfoById(userId, teacherUserUpdateInfo);
+        return ResultVO.success(HttpStatusCode.CREATED);
     }
 }

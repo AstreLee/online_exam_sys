@@ -4,6 +4,7 @@ import com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper;
 import com.xin.online_exam_sys.pojo.request.teacher.TeacherQueryInfoVO;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo;
+import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo;
 import com.xin.online_exam_sys.service.teacher.TeacherUserListService;
 import com.xin.online_exam_sys.utils.JWTContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,16 +61,34 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
         Long classId = teacherQueryInfoVO.getClassId();
         Integer pageNum = teacherQueryInfoVO.getPageNum();
         Integer pageSize = teacherQueryInfoVO.getPageSize();
-        Integer offset = (pageNum - 1) * pageSize;
         Long tId = JWTContext.getCurrentId();
         List<TeacherUserListInfo> totalList = teacherUserListMapper.selectList(userId, grade, classId, tId);
         Map<String, Object> map = new HashMap<>();
-        map.put("total", totalList.size());
+        Integer total = totalList.size();
+        map.put("total", total);
         List<TeacherUserListInfo> newList = new ArrayList<>();
-        for (int i = (pageNum - 1) * pageSize; i < pageNum * pageSize; ++i) {
-            newList.add(totalList.get(i));
+        int start = (pageNum - 1) * pageSize;
+        int end = pageNum * pageSize;
+        if (pageNum * pageSize > total) {
+            start = total % pageSize == 0 ? (total / pageSize - 1) * pageSize : total / pageSize * pageSize;
+            end = start + (total % pageSize == 0 ? pageSize : total % pageSize);
+        }
+        for (; start < end; ++start) {
+            newList.add(totalList.get(start));
         }
         map.put("data", newList);
         return map;
+    }
+
+    @Override
+    public TeacherUserUpdateInfo getInfoById(Long userId) {
+        return teacherUserListMapper.selectInfoById(userId);
+    }
+
+    @Override
+    public void updateInfoById(Long userId, TeacherUserUpdateInfo teacherUserUpdateInfo) {
+        String phone = teacherUserUpdateInfo.getPhone();
+        String email = teacherUserUpdateInfo.getEmail();
+        teacherUserListMapper.updateInfoById(userId, phone, email);
     }
 }
