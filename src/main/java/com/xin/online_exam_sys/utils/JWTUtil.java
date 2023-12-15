@@ -15,7 +15,7 @@ import java.util.Date;
  * @ide : IntelliJ IDEA
  */
 @Component
-public class JWTUtils {
+public class JWTUtil {
     // 普通用户返回token
     public static String createAccessToken(String userId, String username) {
         // 登陆成功生成JWT

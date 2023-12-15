@@ -6,7 +6,7 @@ import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo;
 import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo;
 import com.xin.online_exam_sys.service.teacher.TeacherUserListService;
-import com.xin.online_exam_sys.utils.JWTContext;
+import com.xin.online_exam_sys.utils.JWTContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
     public List<TeacherSelectOption> getGradeOptions(TeacherQueryInfoVO teacherQueryInfoVO) {
         Long userId = teacherQueryInfoVO.getUserId();
         Long classId = teacherQueryInfoVO.getClassId();
-        Long t_id = JWTContext.getCurrentId();
+        Long t_id = JWTContextUtil.getCurrentId();
         if (userId != null) {
             classId = null;
         }
@@ -47,7 +47,7 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
     public List<TeacherSelectOption> getClassOptions(TeacherQueryInfoVO teacherQueryInfoVO) {
         Long userId = teacherQueryInfoVO.getUserId();
         Integer grade = teacherQueryInfoVO.getGrade();
-        Long t_id = JWTContext.getCurrentId();
+        Long t_id = JWTContextUtil.getCurrentId();
         if (userId != null) {
             grade = null;
         }
@@ -61,7 +61,7 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
         Long classId = teacherQueryInfoVO.getClassId();
         Integer pageNum = teacherQueryInfoVO.getPageNum();
         Integer pageSize = teacherQueryInfoVO.getPageSize();
-        Long tId = JWTContext.getCurrentId();
+        Long tId = JWTContextUtil.getCurrentId();
         List<TeacherUserListInfo> totalList = teacherUserListMapper.selectList(userId, grade, classId, tId);
         Map<String, Object> map = new HashMap<>();
         Integer total = totalList.size();

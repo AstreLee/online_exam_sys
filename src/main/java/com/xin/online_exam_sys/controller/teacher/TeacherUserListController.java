@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/teacher")
-public class TeacherUserList {
+public class TeacherUserListController {
     @Autowired
     private TeacherUserListService teacherUserListService;
 

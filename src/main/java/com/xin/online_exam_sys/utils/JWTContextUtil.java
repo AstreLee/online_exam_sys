@@ -6,7 +6,7 @@ package com.xin.online_exam_sys.utils;
  * @file : Context.java
  * @ide : IntelliJ IDEA
  */
-public class JWTContext {
+public class JWTContextUtil {
 
     public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherQuestionMapper">
+    <insert id="insertQuestion" parameterType="question" useGeneratedKeys="true" keyProperty="qId">
+        INSERT INTO question
+        VALUES (null, #{qType}, #{qContent}, #{qAnswer}, #{qExplanation}, #{qScore}, #{qDifficulty}, #{qCreatedTime}, #{courseId});
+    </insert>
+
+    <insert id="insertQuestionOptions">
+        INSERT INTO `option`
+        VALUES (null, #{qId}, #{content}, #{order});
+    </insert>
+
+    <select id="selectCourseOptions" resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption">
+        SELECT DISTINCT c.course_name AS "label",
+                        c.course_id   AS "value"
+        FROM course c
+                 JOIN
+             teacher_class_course tcc on c.course_id = tcc.course_id
+        WHERE t_id = #{tId};
+    </select>
+</mapper>

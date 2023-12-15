@@ -1,9 +1,7 @@
 package com.xin.online_exam_sys.pojo.response;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -32,6 +30,12 @@ public class ResultVO implements Serializable {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public static ResultVO success() {
+        return new ResultVO(HttpStatusCode.OK.getCode(),
+                HttpStatusCode.OK.getEnMsg(),
+                null);
     }
 
     public static ResultVO success(HttpStatusCode httpStatusCode) {

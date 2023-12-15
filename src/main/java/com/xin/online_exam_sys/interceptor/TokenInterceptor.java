@@ -4,8 +4,8 @@ package com.xin.online_exam_sys.interceptor;
 import com.xin.online_exam_sys.config.JWTConfig;
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import com.xin.online_exam_sys.exception.SignatureException;
-import com.xin.online_exam_sys.utils.JWTContext;
-import com.xin.online_exam_sys.utils.JWTUtils;
+import com.xin.online_exam_sys.utils.JWTContextUtil;
+import com.xin.online_exam_sys.utils.JWTUtil;
 import io.jsonwebtoken.Claims;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,13 +32,13 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (StringUtils.isEmpty(token)) {
             throw new SignatureException(HttpStatusCode.UNAUTHORIZED.getCode(), "token为空");
         }
-        Claims claims = JWTUtils.getTokenClaim(token);
+        Claims claims = JWTUtil.getTokenClaim(token);
         // token过期抛出异常
         if (claims.getExpiration().before(new Date())) {
             throw new SignatureException(HttpStatusCode.UNAUTHORIZED.getCode(), "token已经过期！");
         }
         // 添加到ThreadLocal线程池中，方便获取当前用户ID
-        JWTContext.setCurrentId(Long.parseLong(claims.getId()));
+        JWTContextUtil.setCurrentId(Long.parseLong(claims.getId()));
         return true;
     }
 }

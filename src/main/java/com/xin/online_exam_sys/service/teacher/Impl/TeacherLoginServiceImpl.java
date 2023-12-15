@@ -7,8 +7,8 @@ import com.xin.online_exam_sys.pojo.request.UserLoginVO;
 import com.xin.online_exam_sys.pojo.response.ResultVO;
 import com.xin.online_exam_sys.pojo.response.UserInfo;
 import com.xin.online_exam_sys.service.teacher.TeacherLoginService;
-import com.xin.online_exam_sys.utils.JWTContext;
-import com.xin.online_exam_sys.utils.JWTUtils;
+import com.xin.online_exam_sys.utils.JWTContextUtil;
+import com.xin.online_exam_sys.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,7 @@ public class TeacherLoginServiceImpl implements TeacherLoginService {
             // 2. 账号密码正确授权token
             Integer code = HttpStatusCode.OK.getCode();
             String msg = HttpStatusCode.OK.getEnMsg();
-            String data = JWTUtils.createAccessToken(String.valueOf(t.getTId()), t.getTName());
+            String data = JWTUtil.createAccessToken(String.valueOf(t.getTId()), t.getTName());
             return new ResultVO(code, msg, data);
         }
     }
@@ -46,7 +46,7 @@ public class TeacherLoginServiceImpl implements TeacherLoginService {
     @Override
     public ResultVO getUserInfo() {
         // 获取当前用户ID
-        Long userId = JWTContext.getCurrentId();
+        Long userId = JWTContextUtil.getCurrentId();
         System.out.println(userId);
         // 根据用户ID查询用户名和头像
         UserInfo userInfo = teacherLoginMapper.selectUserInfo(userId);
