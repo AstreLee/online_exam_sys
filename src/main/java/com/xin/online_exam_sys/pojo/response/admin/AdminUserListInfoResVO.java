@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminUserListInfo {
+public class AdminUserListInfoResVO {
     private String test;
 }

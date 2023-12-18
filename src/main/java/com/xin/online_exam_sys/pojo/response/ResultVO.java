@@ -38,6 +38,12 @@ public class ResultVO implements Serializable {
                 null);
     }
 
+    public static ResultVO success(Object data) {
+        return new ResultVO(HttpStatusCode.OK.getCode(),
+                HttpStatusCode.OK.getEnMsg(),
+                data);
+    }
+
     public static ResultVO success(HttpStatusCode httpStatusCode) {
         return new ResultVO(httpStatusCode.getCode(),
                 httpStatusCode.getEnMsg(),

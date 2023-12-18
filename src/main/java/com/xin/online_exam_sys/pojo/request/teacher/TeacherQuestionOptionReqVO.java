@@ -6,17 +6,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author : AstreLee
- * @date : 2023/12/8 - 22:32
- * @file : QueryInfoVO.java
+ * @date : 2023/12/14 - 16:17
+ * @file : TeacherQuestionOptionVO.java
  * @ide : IntelliJ IDEA
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherQueryInfoVO {
-    private Long userId;
-    private Integer grade;
-    private Long classId;
-    private Integer pageNum;
-    private Integer pageSize;
+public class TeacherQuestionOptionReqVO {
+    // 选项内容
+    private String content;
+    // 选项顺序
+    private Integer order;
 }

@@ -1,11 +1,14 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionFormVO;
+import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionFormReqVO;
+import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionListQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.response.ResultVO;
 import com.xin.online_exam_sys.service.teacher.TeacherQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @author : AstreLee
@@ -28,9 +31,30 @@ public class TeacherQuestionController {
 
     // 添加试题
     @PostMapping("/question")
-    public ResultVO addQuestion(@RequestBody TeacherQuestionFormVO questionFormVO) {
+    public ResultVO addQuestion(@RequestBody TeacherQuestionFormReqVO questionFormVO) {
         teacherQuestionService.saveQuestionAndOptions(questionFormVO);
-        System.out.println(questionFormVO);
+        return ResultVO.success();
+    }
+
+    // 获取试题列表
+    @PostMapping("/question/list")
+    public ResultVO getQuestion(@RequestBody TeacherQuestionListQueryInfoReqVO teacherQuestionListQueryInfoReqVO) {
+        Map<String, Object> map = teacherQuestionService.getQuestionList(teacherQuestionListQueryInfoReqVO);
+        return ResultVO.success(HttpStatusCode.OK, map);
+    }
+
+    // 获取试题
+    @GetMapping("/question/{id}")
+    public ResultVO getQuestion(@PathVariable Long id) {
+        Object data = teacherQuestionService.getQuestionById(id);
+        return ResultVO.success(HttpStatusCode.OK, data);
+    }
+
+    // 更新试题
+    @PutMapping("/question")
+    public ResultVO updateQuestion(@RequestBody TeacherQuestionFormReqVO questionFormReqVO) {
+        // System.out.println(questionFormReqVO);
+        teacherQuestionService.updateQuestionById(questionFormReqVO);
         return ResultVO.success();
     }
 }

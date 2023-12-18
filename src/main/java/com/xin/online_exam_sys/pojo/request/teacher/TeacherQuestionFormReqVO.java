@@ -15,7 +15,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherQuestionFormVO {
+public class TeacherQuestionFormReqVO {
+    // 问题ID
+    private Long questionId;
     // 问题类型：0/1/2/3/4：单选、多选、判断、填空、简答
     private Integer questionType;
     // 题目所属课程ID
@@ -23,7 +25,7 @@ public class TeacherQuestionFormVO {
     // 题目内容
     private String content;
     // 选项内容
-    private List<TeacherQuestionOptionVO> items;
+    private List<TeacherQuestionOptionReqVO> items;
     // 题目解析
     private String explanation;
     // 题目答案

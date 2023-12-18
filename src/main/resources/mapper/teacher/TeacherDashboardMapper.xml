@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherDashboardMapper">
+    <select id="selectPaperCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT p.p_id)
+        FROM paper p
+                 JOIN
+             teacher_class_course tcc on p.course_id = tcc.course_id
+        WHERE tcc.t_id = #{tId};
+    </select>
+
+    <select id="selectQuestionCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT q.q_id)
+        FROM question q
+                 JOIN
+             teacher_class_course tcc on q.course_id = tcc.course_id
+        WHERE tcc.t_id = #{tId};
+    </select>
+
+    <select id="selectDoPaperCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT p_a.pa_id)
+        FROM paper_answer p_a
+        WHERE p_a.p_id IN (SELECT p_id
+                           FROM paper p
+                                    JOIN
+                                teacher_class_course tcc on p.course_id = tcc.course_id
+                           WHERE tcc.t_id = #{tId});
+    </select>
+
+    <select id="selectDoQuestionCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT p_q_a.pqa_id)
+        FROM paper_question_answer p_q_a
+        WHERE p_q_a.pa_id IN (SELECT p_a.p_id
+                              FROM paper_answer p_a
+                              WHERE p_a.p_id IN (SELECT p_id
+                                                 FROM paper p
+                                                          JOIN
+                                                      teacher_class_course tcc on p.course_id = tcc.course_id
+                                                 WHERE tcc.t_id = #{tId}));
+    </select>
+</mapper>

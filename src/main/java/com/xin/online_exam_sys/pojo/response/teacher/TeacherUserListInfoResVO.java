@@ -1,8 +1,6 @@
 package com.xin.online_exam_sys.pojo.response.teacher;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @author : AstreLee
@@ -11,7 +9,7 @@ import lombok.NoArgsConstructor;
  * @ide : IntelliJ IDEA
  */
 @Data
-public class TeacherUserListInfo {
+public class TeacherUserListInfoResVO {
     private Long userId;
     private String userName;
     private Integer age;

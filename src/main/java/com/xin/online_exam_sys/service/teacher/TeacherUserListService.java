@@ -1,9 +1,8 @@
 package com.xin.online_exam_sys.service.teacher;
 
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherQueryInfoVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOption;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfo;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfo;
+import com.xin.online_exam_sys.pojo.request.teacher.TeacherUserListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfoResVO;
 
 import java.util.List;
 import java.util.Map;
@@ -15,13 +14,13 @@ import java.util.Map;
  * @ide : IntelliJ IDEA
  */
 public interface TeacherUserListService {
-    List<TeacherSelectOption> getGradeOptions(TeacherQueryInfoVO teacherQueryInfoVO);
+    List<TeacherSelectOptionResVO> getGradeOptions(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 
-    List<TeacherSelectOption> getClassOptions(TeacherQueryInfoVO teacherQueryInfoVO);
+    List<TeacherSelectOptionResVO> getClassOptions(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 
-    Map<String, Object> getList(TeacherQueryInfoVO teacherQueryInfoVO);
+    Map<String, Object> getList(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 
-    TeacherUserUpdateInfo getInfoById(Long userId);
+    TeacherUserUpdateInfoResVO getInfoById(Long userId);
 
-    void updateInfoById(Long userId, TeacherUserUpdateInfo teacherUserUpdateInfo);
+    void updateInfoById(Long userId, TeacherUserUpdateInfoResVO teacherUserUpdateInfoResVO);
 }
