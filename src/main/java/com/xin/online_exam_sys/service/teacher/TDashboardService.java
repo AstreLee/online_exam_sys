@@ -8,7 +8,7 @@ import java.util.Map;
  * @file : TeacherDashboardService.java
  * @ide : IntelliJ IDEA
  */
-public interface TeacherDashboardService {
+public interface TDashboardService {
     // 获取试卷量、试题量、已完成试卷量、已完成试题量
     Map<String, Integer> getDashboardInfo();
 }

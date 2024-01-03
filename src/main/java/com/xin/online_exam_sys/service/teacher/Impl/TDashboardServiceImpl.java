@@ -1,7 +1,7 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TeacherDashboardMapper;
-import com.xin.online_exam_sys.service.teacher.TeacherDashboardService;
+import com.xin.online_exam_sys.service.teacher.TDashboardService;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @ide : IntelliJ IDEA
  */
 @Service
-public class TeacherDashboardServiceImpl implements TeacherDashboardService {
+public class TDashboardServiceImpl implements TDashboardService {
     @Autowired
     private TeacherDashboardMapper teacherDashboardMapper;
 

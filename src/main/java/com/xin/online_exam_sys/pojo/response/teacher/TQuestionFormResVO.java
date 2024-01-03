@@ -1,31 +1,32 @@
-package com.xin.online_exam_sys.pojo.request.teacher;
+package com.xin.online_exam_sys.pojo.response.teacher;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.*;
+
 
 /**
  * @author : AstreLee
- * @date : 2023/12/14 - 16:13
- * @file : TeacherQuestionFormVO.java
+ * @date : 2023/12/17 - 10:06
+ * @file : TeacherQuestionGetVO.java
  * @ide : IntelliJ IDEA
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherQuestionFormReqVO {
-    // 问题ID
-    private Long questionId;
-    // 问题类型：0/1/2/3/4：单选、多选、判断、填空、简答
+public class TQuestionFormResVO {
+    // 题目ID
+    private Integer questionId;
+    // 题目类型
     private Integer questionType;
     // 题目所属课程ID
     private Long courseId;
     // 题目内容
     private String content;
     // 选项内容
-    private List<TeacherQuestionOptionReqVO> items;
+    private List<TQuestionOptionResVO> items;
     // 题目解析
     private String explanation;
     // 题目答案

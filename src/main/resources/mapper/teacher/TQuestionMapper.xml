@@ -13,7 +13,7 @@
         VALUES (null, #{qId}, #{content}, #{order});
     </insert>
 
-    <update id="updateQuestionById" parameterType="com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionFormReqVO">
+    <update id="updateQuestionById" parameterType="com.xin.online_exam_sys.pojo.request.teacher.TQuestionFormReqVO">
         UPDATE
             question
         SET
@@ -26,7 +26,7 @@
             q_id = #{questionId};
     </update>
 
-    <select id="selectCourseOptions" resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOptionResVO">
+    <select id="selectCourseOptions" resultType="com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO">
         SELECT DISTINCT c.course_name AS "label",
                         c.course_id   AS "value"
         FROM course c
@@ -36,7 +36,7 @@
     </select>
 
     <select id="selectQuestionList"
-            resultType="com.xin.online_exam_sys.pojo.response.teacher.TeacherQuestionListResVO">
+            resultType="com.xin.online_exam_sys.pojo.response.teacher.TQuestionListResVO">
         SELECT
             q_id AS "questionId",
             course_name AS "courseName",
@@ -67,7 +67,7 @@
             o.option_order;
     </select>
 
-    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.response.teacher.TeacherQuestionFormResVO">
+    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.response.teacher.TQuestionFormResVO">
         <id column="q_id" property="questionId" />
         <result column="q_type" property="questionType" />
         <result column="course_id" property="courseId" />
@@ -76,7 +76,7 @@
         <result column="q_answer" property="answer" />
         <result column="q_score" property="score" />
         <result column="q_difficulty" property="difficulty" />
-        <collection property="items" ofType="com.xin.online_exam_sys.pojo.response.teacher.TeacherQuestionOptionResVO">
+        <collection property="items" ofType="com.xin.online_exam_sys.pojo.response.teacher.TQuestionOptionResVO">
             <result column="option_content" property="content" />
             <result column="option_order" property="order" />
         </collection>

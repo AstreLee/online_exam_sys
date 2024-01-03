@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherSelectOptionResVO {
+public class TSelectOptionResVO {
     private String label;   // 标签名
     private Integer value;  // 标签值
 }

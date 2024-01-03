@@ -9,7 +9,7 @@ import com.xin.online_exam_sys.pojo.response.ResultVO;
  * @file : LoginService.java
  * @ide : IntelliJ IDEA
  */
-public interface TeacherLoginService {
+public interface TLoginService {
     ResultVO getByIdAndPasswd(UserLoginVO userLoginVO);
     ResultVO getUserInfo();
 }

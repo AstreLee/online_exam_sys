@@ -1,11 +1,11 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper;
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOptionResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserListInfoResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherUserUpdateInfoResVO;
-import com.xin.online_exam_sys.service.teacher.TeacherUserListService;
+import com.xin.online_exam_sys.pojo.request.teacher.TUserListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TUserListInfoResVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TUserUpdateInfoResVO;
+import com.xin.online_exam_sys.service.teacher.TUserListService;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,12 @@ import java.util.Map;
  * @ide : IntelliJ IDEA
  */
 @Service
-public class TeacherUserListServiceImpl implements TeacherUserListService {
+public class TUserListServiceImpl implements TUserListService {
     @Autowired
     private TeacherUserListMapper teacherUserListMapper;
 
     @Override
-    public List<TeacherSelectOptionResVO> getGradeOptions(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
+    public List<TSelectOptionResVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Long userId = teacherUserListQueryInfoReqVO.getUserId();
         Long classId = teacherUserListQueryInfoReqVO.getClassId();
         Long t_id = JWTContextUtil.getCurrentId();
@@ -35,16 +35,16 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
             classId = null;
         }
         List<Integer> gradeLists = teacherUserListMapper.selectGradeOptions(userId, classId, t_id);
-        List<TeacherSelectOptionResVO> ans = new ArrayList<>();
+        List<TSelectOptionResVO> ans = new ArrayList<>();
         for (Integer grade : gradeLists) {
             String label = "20" + grade + "级";
-            ans.add(new TeacherSelectOptionResVO(label, grade));
+            ans.add(new TSelectOptionResVO(label, grade));
         }
         return ans;
     }
 
     @Override
-    public List<TeacherSelectOptionResVO> getClassOptions(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
+    public List<TSelectOptionResVO> getClassOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Long userId = teacherUserListQueryInfoReqVO.getUserId();
         Integer grade = teacherUserListQueryInfoReqVO.getGrade();
         Long t_id = JWTContextUtil.getCurrentId();
@@ -55,18 +55,18 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
     }
 
     @Override
-    public Map<String, Object> getList(TeacherUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
+    public Map<String, Object> getList(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Long userId = teacherUserListQueryInfoReqVO.getUserId();
         Integer grade = teacherUserListQueryInfoReqVO.getGrade();
         Long classId = teacherUserListQueryInfoReqVO.getClassId();
         Integer pageNum = teacherUserListQueryInfoReqVO.getPageNum();
         Integer pageSize = teacherUserListQueryInfoReqVO.getPageSize();
         Long tId = JWTContextUtil.getCurrentId();
-        List<TeacherUserListInfoResVO> totalList = teacherUserListMapper.selectList(userId, grade, classId, tId);
+        List<TUserListInfoResVO> totalList = teacherUserListMapper.selectList(userId, grade, classId, tId);
         Map<String, Object> map = new HashMap<>();
         Integer total = totalList.size();
         map.put("total", total);
-        List<TeacherUserListInfoResVO> newList = new ArrayList<>();
+        List<TUserListInfoResVO> newList = new ArrayList<>();
         int start = (pageNum - 1) * pageSize;
         int end = pageNum * pageSize;
         if (pageNum * pageSize > total) {
@@ -81,14 +81,14 @@ public class TeacherUserListServiceImpl implements TeacherUserListService {
     }
 
     @Override
-    public TeacherUserUpdateInfoResVO getInfoById(Long userId) {
+    public TUserUpdateInfoResVO getInfoById(Long userId) {
         return teacherUserListMapper.selectInfoById(userId);
     }
 
     @Override
-    public void updateInfoById(Long userId, TeacherUserUpdateInfoResVO teacherUserUpdateInfoResVO) {
-        String phone = teacherUserUpdateInfoResVO.getPhone();
-        String email = teacherUserUpdateInfoResVO.getEmail();
+    public void updateInfoById(Long userId, TUserUpdateInfoResVO tUserUpdateInfoResVO) {
+        String phone = tUserUpdateInfoResVO.getPhone();
+        String email = tUserUpdateInfoResVO.getEmail();
         teacherUserListMapper.updateInfoById(userId, phone, email);
     }
 }

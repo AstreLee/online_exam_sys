@@ -2,13 +2,13 @@ package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TeacherQuestionMapper;
 import com.xin.online_exam_sys.pojo.entity.Question;
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionFormReqVO;
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.request.teacher.TeacherQuestionOptionReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherQuestionFormResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherQuestionListResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TeacherSelectOptionResVO;
-import com.xin.online_exam_sys.service.teacher.TeacherQuestionService;
+import com.xin.online_exam_sys.pojo.request.teacher.TQuestionFormReqVO;
+import com.xin.online_exam_sys.pojo.request.teacher.TQuestionListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.request.teacher.TQuestionOptionReqVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TQuestionFormResVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TQuestionListResVO;
+import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
+import com.xin.online_exam_sys.service.teacher.TQuestionService;
 import com.xin.online_exam_sys.utils.DateTimeUtil;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import com.xin.online_exam_sys.utils.PaginationUtil;
@@ -26,17 +26,17 @@ import java.util.Map;
  * @ide : IntelliJ IDEA
  */
 @Service
-public class TeacherQuestionServiceImpl implements TeacherQuestionService {
+public class TQuestionServiceImpl implements TQuestionService {
     @Autowired
     private TeacherQuestionMapper teacherQuestionMapper;
     @Override
-    public List<TeacherSelectOptionResVO> getCourseOptions() {
+    public List<TSelectOptionResVO> getCourseOptions() {
         Long tId = JWTContextUtil.getCurrentId();
         return teacherQuestionMapper.selectCourseOptions(tId);
     }
 
     @Override
-    public void saveQuestionAndOptions(TeacherQuestionFormReqVO questionFormVO) {
+    public void saveQuestionAndOptions(TQuestionFormReqVO questionFormVO) {
         Question question = new Question();
         // 这一段没办法...前端如果用qType这种类型的后端根本接收不到
         question.setQType(questionFormVO.getQuestionType());
@@ -50,22 +50,22 @@ public class TeacherQuestionServiceImpl implements TeacherQuestionService {
         // 插入题目
         teacherQuestionMapper.insertQuestion(question);
         // 插入选项
-        List<TeacherQuestionOptionReqVO> optionList = questionFormVO.getItems();
+        List<TQuestionOptionReqVO> optionList = questionFormVO.getItems();
         if (optionList.size() == 0) {
             return;
         }
-        for (TeacherQuestionOptionReqVO teacherQuestionOptionReqVO : optionList) {
-            teacherQuestionMapper.insertQuestionOptions(question.getQId(), teacherQuestionOptionReqVO.getContent(), teacherQuestionOptionReqVO.getOrder());
+        for (TQuestionOptionReqVO tQuestionOptionReqVO : optionList) {
+            teacherQuestionMapper.insertQuestionOptions(question.getQId(), tQuestionOptionReqVO.getContent(), tQuestionOptionReqVO.getOrder());
         }
     }
 
     @Override
-    public Map<String, Object> getQuestionList(TeacherQuestionListQueryInfoReqVO questionListQueryInfoVO) {
+    public Map<String, Object> getQuestionList(TQuestionListQueryInfoReqVO questionListQueryInfoVO) {
         Long courseId = questionListQueryInfoVO.getCourseId();
         Integer questionType = questionListQueryInfoVO.getQuestionType();
         Integer pageNum = questionListQueryInfoVO.getPageNum();
         Integer pageSize = questionListQueryInfoVO.getPageSize();
-        List<TeacherQuestionListResVO> totalList = teacherQuestionMapper.selectQuestionList(courseId, questionType);
+        List<TQuestionListResVO> totalList = teacherQuestionMapper.selectQuestionList(courseId, questionType);
         Integer total = 0;
         if (totalList.size() == 0) {
             Map<String, Object> map = new HashMap<>();
@@ -76,14 +76,14 @@ public class TeacherQuestionServiceImpl implements TeacherQuestionService {
         total = totalList.size();
         Map<String, Object> map = new HashMap<>();
         map.put("total", total);
-        List<TeacherQuestionListResVO> newList = new PaginationUtil<TeacherQuestionListResVO>().getLimitCount(pageNum, pageSize, totalList);
+        List<TQuestionListResVO> newList = new PaginationUtil<TQuestionListResVO>().getLimitCount(pageNum, pageSize, totalList);
         map.put("data", newList);
         return map;
     }
 
     @Override
-    public TeacherQuestionFormResVO getQuestionById(Long questionId) {
-        TeacherQuestionFormResVO questionFormVO = teacherQuestionMapper.selectQuestionById(questionId);
+    public TQuestionFormResVO getQuestionById(Long questionId) {
+        TQuestionFormResVO questionFormVO = teacherQuestionMapper.selectQuestionById(questionId);
         char ch = 'A';
         if (questionFormVO.getItems() == null) {
             return questionFormVO;
@@ -95,7 +95,7 @@ public class TeacherQuestionServiceImpl implements TeacherQuestionService {
     }
 
     @Override
-    public void updateQuestionById(TeacherQuestionFormReqVO questionFormReqVO) {
+    public void updateQuestionById(TQuestionFormReqVO questionFormReqVO) {
         teacherQuestionMapper.updateQuestionById(questionFormReqVO);
     }
 }

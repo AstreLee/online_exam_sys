@@ -6,15 +6,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author : AstreLee
- * @date : 2023/12/16 - 23:14
- * @file : TeacherQuestionListQueryInfoVO.java
+ * @date : 2024/1/2 - 23:11
+ * @file : TeacherPaperQuestionListQueryInfoReqVO.java
  * @ide : IntelliJ IDEA
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherQuestionListQueryInfoReqVO {
+public class TPaperAddQuestionQueryInfoReqVO {
     private Long courseId;
+    private Long questionId;
     private Integer questionType;
     private Integer pageNum;
     private Integer pageSize;

@@ -9,7 +9,7 @@ import lombok.Data;
  * @ide : IntelliJ IDEA
  */
 @Data
-public class TeacherUserUpdateInfoResVO {
+public class TUserUpdateInfoResVO {
     private Long userId;
     private String userName;
     private String phone;

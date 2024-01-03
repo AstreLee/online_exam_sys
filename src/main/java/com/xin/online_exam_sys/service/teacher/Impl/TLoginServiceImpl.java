@@ -6,7 +6,7 @@ import com.xin.online_exam_sys.pojo.entity.Teacher;
 import com.xin.online_exam_sys.pojo.request.UserLoginVO;
 import com.xin.online_exam_sys.pojo.response.ResultVO;
 import com.xin.online_exam_sys.pojo.response.UserInfo;
-import com.xin.online_exam_sys.service.teacher.TeacherLoginService;
+import com.xin.online_exam_sys.service.teacher.TLoginService;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import com.xin.online_exam_sys.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @ide : IntelliJ IDEA
  */
 @Service
-public class TeacherLoginServiceImpl implements TeacherLoginService {
+public class TLoginServiceImpl implements TLoginService {
     @Autowired
     private TeacherLoginMapper teacherLoginMapper;
 
@@ -45,11 +45,11 @@ public class TeacherLoginServiceImpl implements TeacherLoginService {
 
     @Override
     public ResultVO getUserInfo() {
-        // 获取当前用户ID
+        // 获取当前用户id
         Long userId = JWTContextUtil.getCurrentId();
-        System.out.println(userId);
-        // 根据用户ID查询用户名和头像
+        // 根据id查询用户信息
         UserInfo userInfo = teacherLoginMapper.selectUserInfo(userId);
+        // 用户信息为空
         if (userInfo == null) {
             // 用户信息为空
             Integer errCode = HttpStatusCode.BAD_REQUEST.getCode();
@@ -57,6 +57,7 @@ public class TeacherLoginServiceImpl implements TeacherLoginService {
             return new ResultVO(errCode, errMsg);
         } else {
             // 用户信息存在
+            Integer code = HttpStatusCode.OK.getCode();
             Integer successCode = HttpStatusCode.OK.getCode();
             String successMsg = HttpStatusCode.OK.getCnMsg();
             return new ResultVO(successCode, successMsg, userInfo);
