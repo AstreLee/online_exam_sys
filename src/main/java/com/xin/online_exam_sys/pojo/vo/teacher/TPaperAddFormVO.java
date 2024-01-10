@@ -1,4 +1,4 @@
-package com.xin.online_exam_sys.pojo.request.teacher;
+package com.xin.online_exam_sys.pojo.vo.teacher;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * @author : AstreLee
  * @date : 2024/1/3 - 16:59
- * @file : TPaperAddFormReqVO.java
+ * @file : TPaperAddFormVO.java
  * @ide : IntelliJ IDEA
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TPaperAddFormReqVO {
+public class TPaperAddFormVO {
     private Long paperId;
     private Long courseId;
     private Integer paperType;
@@ -23,5 +23,5 @@ public class TPaperAddFormReqVO {
     private String endTime;
     private String paperName;
     private Integer suggestTime;
-    private List<TPaperAddFormTitleItemsReqVO> titleItems;
+    private List<TPaperAddFormTitleItemsVO> titleItems;
 }

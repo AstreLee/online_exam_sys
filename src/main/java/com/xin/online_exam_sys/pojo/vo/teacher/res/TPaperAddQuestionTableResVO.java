@@ -1,5 +1,6 @@
-package com.xin.online_exam_sys.pojo.response.teacher;
+package com.xin.online_exam_sys.pojo.vo.teacher.res;
 
+import com.xin.online_exam_sys.pojo.vo.teacher.TQuestionOptionVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class TPaperAddQuestionTableResVO {
     // 题目内容
     private String content;
     // 选项内容
-    private List<TQuestionOptionResVO> items;
+    private List<TQuestionOptionVO> items;
 }

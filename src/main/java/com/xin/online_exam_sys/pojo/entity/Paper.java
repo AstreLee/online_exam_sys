@@ -56,5 +56,5 @@ public class Paper {
     private String paperCreatedTime;
 
     @TableField("p_created_user")
-    private String paperCreatedUser;
+    private Long paperCreatedUser;
 }

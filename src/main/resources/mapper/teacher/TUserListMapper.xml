@@ -25,7 +25,7 @@
           AND tcc.t_id = #{tId};
     </select>
 
-    <select id="selectClassOptions" resultType="com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO">
+    <select id="selectClassOptions" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO">
         SELECT DISTINCT c.class_name AS "label",
                         c.class_id   AS "value"
         FROM student s
@@ -38,7 +38,7 @@
           AND tcc.t_id = #{tId};
     </select>
 
-    <select id="selectList" resultType="com.xin.online_exam_sys.pojo.response.teacher.TUserListInfoResVO">
+    <select id="selectList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TUserListInfoResVO">
         SELECT s.stu_id        AS "userId",
                s.stu_name      AS "userName",
                s.stu_age       AS "age",
@@ -64,7 +64,7 @@
           AND tcc.t_id = #{tId};
     </select>
 
-    <select id="selectInfoById" resultType="com.xin.online_exam_sys.pojo.response.teacher.TUserUpdateInfoResVO">
+    <select id="selectInfoById" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO">
         SELECT
             stu_id AS "userId",
             stu_name AS "userName",

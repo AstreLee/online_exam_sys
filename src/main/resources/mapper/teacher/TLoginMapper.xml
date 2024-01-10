@@ -8,7 +8,7 @@
         WHERE t_id = #{userId} AND t_passwd = #{userPasswd}
     </select>
 
-    <select id="selectUserInfo" resultType="com.xin.online_exam_sys.pojo.response.UserInfo">
+    <select id="selectUserInfo" resultType="com.xin.online_exam_sys.pojo.vo.UserInfo">
         SELECT t_name AS name, t_img_url AS avatar
         FROM teacher
         WHERE t_id = #{userId};

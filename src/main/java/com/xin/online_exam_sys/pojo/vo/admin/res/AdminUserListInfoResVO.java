@@ -1,4 +1,4 @@
-package com.xin.online_exam_sys.pojo.response.admin;
+package com.xin.online_exam_sys.pojo.vo.admin.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

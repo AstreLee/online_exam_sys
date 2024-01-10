@@ -1,9 +1,10 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
-import com.xin.online_exam_sys.pojo.request.teacher.TPaperAddFormReqVO;
-import com.xin.online_exam_sys.pojo.request.teacher.TPaperAddQuestionQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.response.ResultVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TPaperAddQuestionQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TPaperListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.service.teacher.TPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,18 @@ public class TeacherPaperController {
     }
 
     @PostMapping("")
-    public ResultVO addPaper(@RequestBody TPaperAddFormReqVO reqVO) {
-        System.out.println(reqVO);
+    public ResultVO addPaper(@RequestBody TPaperAddFormVO reqVO) {
+        tPaperService.savePaper(reqVO);
         return ResultVO.success();
+    }
+
+    @PostMapping("/list")
+    public ResultVO getPaperList(@RequestBody TPaperListQueryInfoReqVO reqVO) {
+        return ResultVO.success(HttpStatusCode.OK, tPaperService.getPaperList(reqVO));
+    }
+
+    @GetMapping("/{id}")
+    public ResultVO getPaperById(@PathVariable("id") Long id) {
+        return ResultVO.success(HttpStatusCode.OK, tPaperService.getPaperById(id));
     }
 }

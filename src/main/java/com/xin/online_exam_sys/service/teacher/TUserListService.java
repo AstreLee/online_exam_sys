@@ -1,8 +1,8 @@
 package com.xin.online_exam_sys.service.teacher;
 
-import com.xin.online_exam_sys.pojo.request.teacher.TUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TUserUpdateInfoResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 
 import java.util.List;
 import java.util.Map;

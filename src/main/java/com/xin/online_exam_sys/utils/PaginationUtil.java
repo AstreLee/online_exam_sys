@@ -9,6 +9,9 @@ import java.util.*;
  */
 public class PaginationUtil<T> {
     public List<T> getLimitCount(Integer pageNum, Integer pageSize, List<T> totalList) {
+        if (totalList == null || totalList.size() == 0) {
+            return null;
+        }
         Integer total = totalList.size();
         List<T> newList = new ArrayList<>();
         int start = (pageNum - 1) * pageSize;

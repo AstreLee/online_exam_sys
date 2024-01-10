@@ -1,4 +1,4 @@
-package com.xin.online_exam_sys.pojo.request.teacher;
+package com.xin.online_exam_sys.pojo.vo.teacher.req;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

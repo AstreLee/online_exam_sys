@@ -1,4 +1,4 @@
-package com.xin.online_exam_sys.pojo.response;
+package com.xin.online_exam_sys.pojo.vo;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import lombok.Data;

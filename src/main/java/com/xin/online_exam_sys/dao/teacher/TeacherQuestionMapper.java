@@ -1,10 +1,10 @@
 package com.xin.online_exam_sys.dao.teacher;
 
 import com.xin.online_exam_sys.pojo.entity.Question;
-import com.xin.online_exam_sys.pojo.request.teacher.TQuestionFormReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TQuestionFormResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TQuestionListResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionFormReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionFormResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionListResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

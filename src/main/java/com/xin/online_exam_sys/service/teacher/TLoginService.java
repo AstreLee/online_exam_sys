@@ -1,7 +1,7 @@
 package com.xin.online_exam_sys.service.teacher;
 
-import com.xin.online_exam_sys.pojo.request.UserLoginVO;
-import com.xin.online_exam_sys.pojo.response.ResultVO;
+import com.xin.online_exam_sys.pojo.vo.UserLoginVO;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
 
 /**
  * @author : AstreLee

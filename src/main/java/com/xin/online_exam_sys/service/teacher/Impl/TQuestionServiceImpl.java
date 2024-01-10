@@ -2,12 +2,12 @@ package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TeacherQuestionMapper;
 import com.xin.online_exam_sys.pojo.entity.Question;
-import com.xin.online_exam_sys.pojo.request.teacher.TQuestionFormReqVO;
-import com.xin.online_exam_sys.pojo.request.teacher.TQuestionListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.request.teacher.TQuestionOptionReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TQuestionFormResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TQuestionListResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionFormReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionOptionReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionFormResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionListResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
 import com.xin.online_exam_sys.service.teacher.TQuestionService;
 import com.xin.online_exam_sys.utils.DateTimeUtil;
 import com.xin.online_exam_sys.utils.JWTContextUtil;

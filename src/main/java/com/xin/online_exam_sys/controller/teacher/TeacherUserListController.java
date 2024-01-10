@@ -1,9 +1,9 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
-import com.xin.online_exam_sys.pojo.request.teacher.TUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.response.ResultVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TUserUpdateInfoResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 import com.xin.online_exam_sys.service.teacher.TUserListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

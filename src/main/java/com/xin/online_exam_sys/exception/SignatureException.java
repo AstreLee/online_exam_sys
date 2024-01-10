@@ -1,6 +1,6 @@
 package com.xin.online_exam_sys.exception;
 
-import com.xin.online_exam_sys.pojo.response.ResultVO;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

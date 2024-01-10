@@ -1,4 +1,5 @@
-package com.xin.online_exam_sys.pojo.request.teacher;
+package com.xin.online_exam_sys.pojo.vo.teacher;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,16 +7,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author : AstreLee
- * @date : 2023/12/14 - 16:17
+ * @date : 2023/12/17 - 10:08
  * @file : TeacherQuestionOptionVO.java
  * @ide : IntelliJ IDEA
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TQuestionOptionReqVO {
-    // 选项内容
+public class TQuestionOptionVO {
+    private Character prefix;
+    private Long questionId;
     private String content;
-    // 选项顺序
     private Integer order;
 }

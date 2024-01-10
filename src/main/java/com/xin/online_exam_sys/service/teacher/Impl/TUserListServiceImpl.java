@@ -1,10 +1,10 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper;
-import com.xin.online_exam_sys.pojo.request.teacher.TUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TSelectOptionResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TUserListInfoResVO;
-import com.xin.online_exam_sys.pojo.response.teacher.TUserUpdateInfoResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserListInfoResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 import com.xin.online_exam_sys.service.teacher.TUserListService;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
