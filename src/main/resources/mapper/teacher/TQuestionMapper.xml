@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherQuestionMapper">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TQuestionMapper">
     <insert id="insertQuestion" parameterType="com.xin.online_exam_sys.pojo.entity.Question" useGeneratedKeys="true" keyProperty="qId">
         INSERT INTO question
         VALUES (null, #{qType}, #{qContent}, #{qAnswer}, #{qExplanation}, #{qScore}, #{qDifficulty}, #{qCreatedTime}, #{courseId});

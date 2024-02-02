@@ -32,6 +32,11 @@ public class ResultVO implements Serializable {
         this.data = data;
     }
 
+    public static ResultVO error(HttpStatusCode httpStatusCode) {
+        return new ResultVO(httpStatusCode.getCode(),
+                httpStatusCode.getEnMsg());
+    }
+
     public static ResultVO success() {
         return new ResultVO(HttpStatusCode.OK.getCode(),
                 HttpStatusCode.OK.getEnMsg(),

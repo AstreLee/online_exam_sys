@@ -15,7 +15,7 @@ import java.util.List;
  * @ide : IntelliJ IDEA
  */
 @Mapper
-public interface TeacherUserListMapper {
+public interface TUserListMapper {
     List<Integer> selectGradeOptions(@Param("userId") Long userId, @Param("classId") Long classId, @Param("tId") Long tId);
 
     List<TSelectOptionResVO> selectClassOptions(@Param("userId") Long userId, @Param("grade") Integer grade, @Param("tId") Long tId);

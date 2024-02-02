@@ -1,6 +1,6 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
-import com.xin.online_exam_sys.dao.teacher.TeacherLoginMapper;
+import com.xin.online_exam_sys.dao.teacher.TLoginMapper;
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import com.xin.online_exam_sys.pojo.entity.Teacher;
 import com.xin.online_exam_sys.pojo.vo.UserLoginVO;
@@ -21,14 +21,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class TLoginServiceImpl implements TLoginService {
     @Autowired
-    private TeacherLoginMapper teacherLoginMapper;
+    private TLoginMapper tLoginMapper;
 
     @Override
     public ResultVO getByIdAndPasswd(UserLoginVO userLoginVO) {
         // 根据id和password查询teacher表
         Long userId = userLoginVO.getUserId();
         String userPasswd = userLoginVO.getUserPasswd();
-        Teacher t = teacherLoginMapper.selectByIdAndPasswd(userId, userPasswd);
+        Teacher t = tLoginMapper.selectByIdAndPasswd(userId, userPasswd);
         // 1. t为空说明账号或者密码不正确
         if (t == null) {
             Integer errCode = HttpStatusCode.BAD_REQUEST.getCode();
@@ -48,7 +48,7 @@ public class TLoginServiceImpl implements TLoginService {
         // 获取当前用户id
         Long userId = JWTContextUtil.getCurrentId();
         // 根据id查询用户信息
-        UserInfo userInfo = teacherLoginMapper.selectUserInfo(userId);
+        UserInfo userInfo = tLoginMapper.selectUserInfo(userId);
         // 用户信息为空
         if (userInfo == null) {
             // 用户信息为空

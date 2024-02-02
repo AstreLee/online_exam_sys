@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author : AstreLee
  * @date : 2024/1/2 - 10:24
- * @file : TeacherPaperController.java
+ * @file : TPaperController.java
  * @ide : IntelliJ IDEA
  */
 @RestController
 @RequestMapping("/teacher/paper")
-public class TeacherPaperController {
+public class TPaperController {
     @Autowired
     private TPaperService tPaperService;
 

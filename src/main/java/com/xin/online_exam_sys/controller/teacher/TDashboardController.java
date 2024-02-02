@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author : AstreLee
  * @date : 2023/12/17 - 16:59
- * @file : TeacherDashboardController.java
+ * @file : TDashboardController.java
  * @ide : IntelliJ IDEA
  */
 @RestController
 @RequestMapping("/teacher")
-public class TeacherDashboardController {
+public class TDashboardController {
     @Autowired
     private TDashboardService tDashboardService;
 

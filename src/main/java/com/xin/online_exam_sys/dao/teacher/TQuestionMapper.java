@@ -17,7 +17,7 @@ import java.util.List;
  * @ide : IntelliJ IDEA
  */
 @Mapper
-public interface TeacherQuestionMapper {
+public interface TQuestionMapper {
     // 获取课程集合
     List<TSelectOptionResVO> selectCourseOptions(@Param("tId") Long tId);
 

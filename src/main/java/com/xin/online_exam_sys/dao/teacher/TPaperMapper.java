@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * @author : AstreLee
  * @date : 2024/1/2 - 10:19
- * @file : TeacherPaperMapper.java
+ * @file : TPaperMapper.java
  * @ide : IntelliJ IDEA
  */
 @Mapper
-public interface TeacherPaperMapper {
+public interface TPaperMapper {
     // 查询课程选项
     List<TSelectOptionResVO> selectCourseOptions(@Param("tId") Long tId);
 

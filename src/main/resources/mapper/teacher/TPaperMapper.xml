@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherPaperMapper">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TPaperMapper">
     <insert id="insertPaper" useGeneratedKeys="true" keyProperty="paperId">
         INSERT INTO paper
         VALUES (NULL, #{paper.paperName}, #{paper.courseId}, #{paper.paperType},

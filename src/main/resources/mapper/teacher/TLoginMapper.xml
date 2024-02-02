@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xin.online_exam_sys.dao.teacher.TeacherLoginMapper">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TLoginMapper">
     <select id="selectByIdAndPasswd" resultType="com.xin.online_exam_sys.pojo.entity.Teacher">
         SELECT * FROM teacher
         WHERE t_id = #{userId} AND t_passwd = #{userPasswd}

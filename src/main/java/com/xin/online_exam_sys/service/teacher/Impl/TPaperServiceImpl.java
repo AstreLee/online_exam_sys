@@ -1,6 +1,6 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
-import com.xin.online_exam_sys.dao.teacher.TeacherPaperMapper;
+import com.xin.online_exam_sys.dao.teacher.TPaperMapper;
 import com.xin.online_exam_sys.pojo.entity.Paper;
 import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormTitleItemsVO;
@@ -30,17 +30,17 @@ import java.util.Map;
 @Service
 public class TPaperServiceImpl implements TPaperService {
     @Autowired
-    private TeacherPaperMapper teacherPaperMapper;
+    private TPaperMapper tPaperMapper;
 
     @Override
     public List<TSelectOptionResVO> getCourseOptions() {
         Long tId = JWTContextUtil.getCurrentId();
-        return teacherPaperMapper.selectCourseOptions(tId);
+        return tPaperMapper.selectCourseOptions(tId);
     }
 
     @Override
     public Map<String, Object> getQuestionList(TPaperAddQuestionQueryInfoReqVO reqVO) {
-        List<TPaperAddQuestionTableResVO> result = teacherPaperMapper.selectQuestions(reqVO.getQuestionId(),
+        List<TPaperAddQuestionTableResVO> result = tPaperMapper.selectQuestions(reqVO.getQuestionId(),
                 reqVO.getCourseId(), reqVO.getQuestionType());
         Integer pageNum = reqVO.getPageNum();
         Integer pageSize = reqVO.getPageSize();
@@ -91,7 +91,7 @@ public class TPaperServiceImpl implements TPaperService {
         paper.setPaperCreatedUser(tId);
 
         // 保存试卷
-        teacherPaperMapper.insertPaper(paper);
+        tPaperMapper.insertPaper(paper);
         // 获取试卷id
         Long paperId = paper.getPaperId();
         // 获取试卷所有题目
@@ -102,12 +102,12 @@ public class TPaperServiceImpl implements TPaperService {
             }
         }
         // 保存试卷题目
-        teacherPaperMapper.insertPaperQuestionList(paperId, questionIds);
+        tPaperMapper.insertPaperQuestionList(paperId, questionIds);
     }
 
     @Override
     public Map<String, Object> getPaperList(TPaperListQueryInfoReqVO reqVO) {
-        List<TPaperListResVO> result = teacherPaperMapper.selectPaperList(reqVO.getPaperId(), reqVO.getCourseId());
+        List<TPaperListResVO> result = tPaperMapper.selectPaperList(reqVO.getPaperId(), reqVO.getCourseId());
         Integer pageNum = reqVO.getPageNum();
         Integer pageSize = reqVO.getPageSize();
         List<TPaperListResVO> newResult = new PaginationUtil<TPaperListResVO>().getLimitCount(pageNum, pageSize, result);
@@ -125,8 +125,8 @@ public class TPaperServiceImpl implements TPaperService {
 
     @Override
     public TPaperAddFormVO getPaperById(Long id) {
-        List<Integer> qTypesList = teacherPaperMapper.selectQuestionTypeByPaperId(id);
-        TPaperAddFormVO res = teacherPaperMapper.selectPaperDetail(id);
+        List<Integer> qTypesList = tPaperMapper.selectQuestionTypeByPaperId(id);
+        TPaperAddFormVO res = tPaperMapper.selectPaperDetail(id);
         res.setTitleItems(new ArrayList<>());
         Map<Integer, String> map = new HashMap<>();
         map.put(1, "单选题");
@@ -138,8 +138,8 @@ public class TPaperServiceImpl implements TPaperService {
             TPaperAddFormTitleItemsVO titleItem = new TPaperAddFormTitleItemsVO();
             titleItem.setTitleId(qType);
             titleItem.setTitleName(map.get(qType));
-            List<Long> questionIds = teacherPaperMapper.selectQuestionByType(id, qType);
-            List<TPaperAddFormQuestionItemsVO> questionItem = teacherPaperMapper.selectQuestionDetail(questionIds);
+            List<Long> questionIds = tPaperMapper.selectQuestionByType(id, qType);
+            List<TPaperAddFormQuestionItemsVO> questionItem = tPaperMapper.selectQuestionDetail(questionIds);
             titleItem.setQuestionItems(questionItem);
             res.getTitleItems().add(titleItem);
         }

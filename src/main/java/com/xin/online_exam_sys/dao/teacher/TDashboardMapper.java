@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.Param;
 /**
  * @author : AstreLee
  * @date : 2023/12/17 - 16:35
- * @file : TeacherDashboardMapper.java
+ * @file : TDashboardMapper.java
  * @ide : IntelliJ IDEA
  */
 @Mapper
-public interface TeacherDashboardMapper {
+public interface TDashboardMapper {
     // 试卷数量
     Integer selectPaperCount(@Param("tId") Long tId);
 

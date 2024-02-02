@@ -1,6 +1,6 @@
 package com.xin.online_exam_sys.service.teacher.Impl;
 
-import com.xin.online_exam_sys.dao.teacher.TeacherUserListMapper;
+import com.xin.online_exam_sys.dao.teacher.TUserListMapper;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserListInfoResVO;
@@ -24,7 +24,7 @@ import java.util.Map;
 @Service
 public class TUserListServiceImpl implements TUserListService {
     @Autowired
-    private TeacherUserListMapper teacherUserListMapper;
+    private TUserListMapper tUserListMapper;
 
     @Override
     public List<TSelectOptionResVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
@@ -34,7 +34,7 @@ public class TUserListServiceImpl implements TUserListService {
         if (userId != null) {
             classId = null;
         }
-        List<Integer> gradeLists = teacherUserListMapper.selectGradeOptions(userId, classId, t_id);
+        List<Integer> gradeLists = tUserListMapper.selectGradeOptions(userId, classId, t_id);
         List<TSelectOptionResVO> ans = new ArrayList<>();
         for (Integer grade : gradeLists) {
             String label = "20" + grade + "级";
@@ -51,7 +51,7 @@ public class TUserListServiceImpl implements TUserListService {
         if (userId != null) {
             grade = null;
         }
-        return teacherUserListMapper.selectClassOptions(userId, grade, t_id);
+        return tUserListMapper.selectClassOptions(userId, grade, t_id);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class TUserListServiceImpl implements TUserListService {
         Integer pageNum = teacherUserListQueryInfoReqVO.getPageNum();
         Integer pageSize = teacherUserListQueryInfoReqVO.getPageSize();
         Long tId = JWTContextUtil.getCurrentId();
-        List<TUserListInfoResVO> totalList = teacherUserListMapper.selectList(userId, grade, classId, tId);
+        List<TUserListInfoResVO> totalList = tUserListMapper.selectList(userId, grade, classId, tId);
         Map<String, Object> map = new HashMap<>();
         Integer total = totalList.size();
         map.put("total", total);
@@ -82,13 +82,13 @@ public class TUserListServiceImpl implements TUserListService {
 
     @Override
     public TUserUpdateInfoResVO getInfoById(Long userId) {
-        return teacherUserListMapper.selectInfoById(userId);
+        return tUserListMapper.selectInfoById(userId);
     }
 
     @Override
     public void updateInfoById(Long userId, TUserUpdateInfoResVO tUserUpdateInfoResVO) {
         String phone = tUserUpdateInfoResVO.getPhone();
         String email = tUserUpdateInfoResVO.getEmail();
-        teacherUserListMapper.updateInfoById(userId, phone, email);
+        tUserListMapper.updateInfoById(userId, phone, email);
     }
 }
