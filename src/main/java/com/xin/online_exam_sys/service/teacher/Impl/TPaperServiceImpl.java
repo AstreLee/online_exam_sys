@@ -21,12 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2024/1/2 - 10:22
- * @file : TeacherPaperServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class TPaperServiceImpl implements TPaperService {
     @Autowired
@@ -54,8 +49,8 @@ public class TPaperServiceImpl implements TPaperService {
         for (int i = 0; i < newResult.size(); i++) {
             if (reqVO.getQuestionType() == 1 || reqVO.getQuestionType() == 2) {
                 char prefix = 'A';
-                for (int j = 0; j < newResult.get(i).getItems().size(); j++, prefix++) {
-                    newResult.get(i).getItems().get(j).setPrefix(prefix);
+                for (int j = 0; j < newResult.get(i).getItems().size(); j++) {
+                    newResult.get(i).getItems().get(j).setPrefix(prefix++);
                 }
             }
         }
@@ -140,6 +135,15 @@ public class TPaperServiceImpl implements TPaperService {
             titleItem.setTitleName(map.get(qType));
             List<Long> questionIds = tPaperMapper.selectQuestionByType(id, qType);
             List<TPaperAddFormQuestionItemsVO> questionItem = tPaperMapper.selectQuestionDetail(questionIds);
+            for (int i = 0; i < questionItem.size(); i++) {
+                if (questionItem.get(i).getItems().isEmpty() || qType > 2) {
+                    continue;
+                }
+                char prefix = 'A';
+                for (int j = 0; j < questionItem.get(i).getItems().size(); j++) {
+                    questionItem.get(i).getItems().get(j).setPrefix(prefix++);
+                }
+            }
             titleItem.setQuestionItems(questionItem);
             res.getTitleItems().add(titleItem);
         }

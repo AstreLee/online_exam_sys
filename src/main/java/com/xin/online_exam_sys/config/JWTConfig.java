@@ -4,13 +4,6 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/3 - 23:05
- * @file : JWTConfig.java
- * @ide : IntelliJ IDEA
- */
-
 @Data
 @Component
 @ConfigurationProperties(prefix = "jwt")

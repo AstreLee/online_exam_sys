@@ -7,12 +7,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/4 - 9:02
- * @file : WebMvcConfig.java
- * @ide : IntelliJ IDEA
- */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     // 配置jwt拦截器

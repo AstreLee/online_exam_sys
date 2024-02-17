@@ -7,7 +7,6 @@ package com.xin.online_exam_sys.utils;
  * @ide : IntelliJ IDEA
  */
 public class JWTContextUtil {
-
     public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     public static void setCurrentId(Long id) {
