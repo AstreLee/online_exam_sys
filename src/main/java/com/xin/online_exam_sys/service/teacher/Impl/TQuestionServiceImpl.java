@@ -66,7 +66,7 @@ public class TQuestionServiceImpl implements TQuestionService {
         Integer pageNum = questionListQueryInfoVO.getPageNum();
         Integer pageSize = questionListQueryInfoVO.getPageSize();
         List<TQuestionListResVO> totalList = tQuestionMapper.selectQuestionList(courseId, questionType);
-        Integer total = 0;
+        int total = 0;
         if (totalList.size() == 0) {
             Map<String, Object> map = new HashMap<>();
             map.put("total", 0);

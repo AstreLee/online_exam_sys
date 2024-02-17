@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TAnswerMapper">
+    <select id="selectStuIdsByTeacherId" resultType="java.lang.Long">
+        SELECT stu_id
+        FROM
+            task t
+        WHERE
+            t.task_type = 0 AND t.task_created_id = #{tId}
+        UNION
+        SELECT s.stu_id
+        FROM
+            task t
+                LEFT JOIN student s ON s.class_id = t.class_id
+        WHERE
+            t.task_type = 1 AND t.task_created_id = #{tId}
+    </select>
+
+    <select id="selectRecordListByIds"
+            resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TAnswerListResVO">
+        SELECT
+            pa.pa_id AS answerPaperId,
+            p.p_name AS answerPaperName,
+            s.stu_name AS username,
+            c.class_name AS className,
+            SUM(pqa.pqa_score) AS totalScore,
+            pa.pa_state AS state,
+            pa.pa_do_time AS doTime,
+            pa.pa_submit_time AS submitTime,
+            cs.course_name AS courseName
+        FROM
+            paper_answer pa
+            LEFT JOIN paper p ON p.p_id = pa.p_id
+            LEFT JOIN course cs ON cs.course_id = p.course_id
+            LEFT JOIN student s ON s.stu_id = pa.stu_id
+            LEFT JOIN class c ON c.class_id = s.class_id
+            LEFT JOIN paper_question_answer pqa ON pqa.pa_id = pa.pa_id
+        WHERE
+            s.stu_id IN
+        <foreach collection="stuIds" item="stuId" separator="," open="(" close=")">
+            #{stuId}
+        </foreach>
+        AND cs.course_id = COALESCE(#{courseId}, cs.course_id)
+        AND pa.pa_state = COALESCE(#{state}, pa.pa_state)
+        GROUP BY
+            pa.pa_id
+    </select>
+</mapper>

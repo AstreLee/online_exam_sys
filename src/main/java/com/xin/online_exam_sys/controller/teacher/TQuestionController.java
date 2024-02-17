@@ -10,12 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/14 - 16:00
- * @file : TeacherQuestion.java
- * @ide : IntelliJ IDEA
- */
+
 @RestController
 @RequestMapping("/teacher")
 public class TQuestionController {
