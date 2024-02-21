@@ -19,7 +19,7 @@ public class JWTUtil {
     // 普通用户返回token
     public static String createAccessToken(String userId, String username) {
         // 登陆成功生成JWT
-        return Jwts.builder()
+        String jwt = Jwts.builder()
                 // 设置用户ID
                 .setId(userId)
                 // 设置用户名
@@ -29,6 +29,10 @@ public class JWTUtil {
                 // 签名算法和密钥
                 .signWith(SignatureAlgorithm.HS512, JWTConfig.secret)
                 .compact();
+        // 添加到ThreadLocal线程池中，方便获取当前用户ID
+        JWTContextUtil.setCurrentId(Long.valueOf(userId));
+        // 返回jwt
+        return jwt;
     }
 
     public static Claims getTokenClaim(String token) {

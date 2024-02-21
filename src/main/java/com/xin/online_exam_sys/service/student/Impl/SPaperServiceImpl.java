@@ -171,7 +171,6 @@ public class SPaperServiceImpl implements SPaperService {
             titleItemResVO.setQuestionList(recordList);
             res.add(titleItemResVO);
         }
-        System.out.println(res);
         return res;
     }
 

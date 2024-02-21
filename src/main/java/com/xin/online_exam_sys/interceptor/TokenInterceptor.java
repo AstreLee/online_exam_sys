@@ -4,10 +4,8 @@ package com.xin.online_exam_sys.interceptor;
 import com.xin.online_exam_sys.config.JWTConfig;
 import com.xin.online_exam_sys.enums.HttpStatusCode;
 import com.xin.online_exam_sys.exception.SignatureException;
-import com.xin.online_exam_sys.utils.JWTContextUtil;
 import com.xin.online_exam_sys.utils.JWTUtil;
 import io.jsonwebtoken.Claims;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -37,8 +35,6 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (claims.getExpiration().before(new Date())) {
             throw new SignatureException(HttpStatusCode.UNAUTHORIZED.getCode(), "token已经过期！");
         }
-        // 添加到ThreadLocal线程池中，方便获取当前用户ID
-        JWTContextUtil.setCurrentId(Long.parseLong(claims.getId()));
         return true;
     }
 }

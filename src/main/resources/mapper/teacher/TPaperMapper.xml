@@ -100,7 +100,7 @@
             p_id = #{paperId};
     </select>
 
-    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO">
+    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperAddQuestionTableResVO">
         <id column="q_id" property="questionId"/>
         <result column="q_content" property="content"/>
         <collection property="items" ofType="com.xin.online_exam_sys.pojo.vo.teacher.TQuestionOptionVO">

@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/student")
 public class SPaperController {
+    private final SPaperService sPaperService;
+
     @Autowired
-    private SPaperService sPaperService;
+    private SPaperController(SPaperService sPaperService) {
+        this.sPaperService = sPaperService;
+    }
 
     // 获取试卷列表
     @GetMapping("/exam/list")
