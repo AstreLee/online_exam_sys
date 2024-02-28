@@ -7,8 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

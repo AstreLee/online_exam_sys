@@ -26,8 +26,8 @@
             c.course_name AS courseName,
             p.p_sum_num AS totalNum,
             p.p_suggest_time AS suggestTime,
-            DATE_FORMAT(p.p_start_time, '%Y-%m-%d %H:%i:%s') AS startTime,
-            DATE_FORMAT(p.p_end_time, '%Y-%m-%d %H:%i:%s') AS endTime
+            SUBSTRING_INDEX(DATE_FORMAT(p.p_start_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS startTime,
+            SUBSTRING_INDEX(DATE_FORMAT(p.p_end_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS endTime
         FROM
             paper p
             LEFT JOIN course c ON p.course_id = c.course_id

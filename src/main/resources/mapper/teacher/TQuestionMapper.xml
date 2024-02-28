@@ -44,7 +44,7 @@
             q_content AS "content",
             q_score AS "score",
             q_difficulty AS "difficulty",
-            DATE_FORMAT(q_created_time, '%Y-%m-%d %H:%i:%s') AS "createdTime"
+            SUBSTRING_INDEX(DATE_FORMAT(q_created_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS "createdTime"
         FROM
             course c
                 JOIN

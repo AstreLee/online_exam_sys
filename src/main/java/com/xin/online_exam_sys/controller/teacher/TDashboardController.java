@@ -7,12 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/17 - 16:59
- * @file : TDashboardController.java
- * @ide : IntelliJ IDEA
- */
 @RestController
 @RequestMapping("/teacher")
 public class TDashboardController {

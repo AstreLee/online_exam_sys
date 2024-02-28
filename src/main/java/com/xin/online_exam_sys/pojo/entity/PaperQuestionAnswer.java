@@ -7,13 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author : AstreLee
- * @date : 2024/2/16 - 10:16
- * @file : PaperQuestionAnswer.java
- * @ide : IntelliJ IDEA
- */
+@Repository
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

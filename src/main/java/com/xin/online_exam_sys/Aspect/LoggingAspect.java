@@ -1,6 +1,9 @@
 package com.xin.online_exam_sys.Aspect;
 
 import com.xin.online_exam_sys.annotation.Loggable;
+import com.xin.online_exam_sys.pojo.entity.SysLog;
+import com.xin.online_exam_sys.service.teacher.TLogService;
+import com.xin.online_exam_sys.utils.DateTimeUtil;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -12,18 +15,21 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LoggingAspect {
+    private final TLogService tLogService;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-
+    private final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
+    public LoggingAspect(TLogService tLogService) {
+        this.tLogService = tLogService;
+    }
     @AfterReturning("@annotation(loggable)")
     public void logMethodCall(JoinPoint joinPoint, Loggable loggable) {
-        System.out.println("*****");
-        System.out.println(JWTContextUtil.getCurrentId());
-        String methodName = joinPoint.getSignature().getName();
-        Object[] args = joinPoint.getArgs();
-
-        // 如果需要记录返回结果，也可以添加到日志中
-        logger.info("Method {} returned: {}", methodName, 123);
+        Long userId = JWTContextUtil.getCurrentId();
+        // 构建插入对象
+        SysLog syslog = new SysLog();
+        syslog.setLogUserId(userId);
+        syslog.setLogContent(loggable.value());
+        syslog.setLogCreatedTime(DateTimeUtil.getCurrentFormattedDateTime());
+        // 插入日志对象
+        tLogService.saveLog(syslog);
     }
 }

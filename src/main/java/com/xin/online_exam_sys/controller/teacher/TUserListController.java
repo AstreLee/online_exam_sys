@@ -10,43 +10,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/9 - 10:25
- * @file : UserList.java
- * @ide : IntelliJ IDEA
- */
+
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/teacher/user/list")
 public class TUserListController {
     @Autowired
     private TUserListService tUserListService;
 
-    @PostMapping("/user/list/gradeOption")
+    @PostMapping("/gradeOption")
     public ResultVO getGradeOption(@RequestBody TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Object data = tUserListService.getGradeOptions(teacherUserListQueryInfoReqVO);
         return ResultVO.success(HttpStatusCode.OK, data);
     }
 
-    @PostMapping("/user/list/classOption")
+    @PostMapping("/classOption")
     public ResultVO getClassOption(@RequestBody TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Object data = tUserListService.getClassOptions(teacherUserListQueryInfoReqVO);
         return ResultVO.success(HttpStatusCode.OK, data);
     }
 
-    @PostMapping("/user/list")
+    @PostMapping("")
     public ResultVO getList(@RequestBody TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Map<String, Object> data = tUserListService.getList(teacherUserListQueryInfoReqVO);
         return ResultVO.success(HttpStatusCode.OK, data);
     }
 
-    @GetMapping("/user/list/userInfo/{id}")
+    @GetMapping("/userInfo/{id}")
     public ResultVO getUserInfo(@PathVariable("id") Long userId) {
         Object data = tUserListService.getInfoById(userId);
         return ResultVO.success(HttpStatusCode.OK, data);
     }
 
-    @PutMapping("/user/list/userInfo/{id}")
+    @PutMapping("/userInfo/{id}")
     public ResultVO updateUserInfo(@PathVariable("id") Long userId, @RequestBody TUserUpdateInfoResVO tUserUpdateInfoResVO) {
         tUserListService.updateInfoById(userId, tUserUpdateInfoResVO);
         return ResultVO.success(HttpStatusCode.CREATED);

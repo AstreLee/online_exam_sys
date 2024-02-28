@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/teacher/answer")
 public class TAnswerController {
     @Autowired
     private TAnswerService tAnswerService;
 
-    @PostMapping("/answer/list")
+    @PostMapping("/list")
     public ResultVO getAnswerList(@RequestBody TAnswerQueryInfoReqVO vo) {
         return ResultVO.success(tAnswerService.getStuIdsByTeacherId(vo));
     }
 
-    @GetMapping("/answer/info")
+    @GetMapping("/info")
     public ResultVO getAnswerInfo(@RequestParam Long paId) {
         return ResultVO.success(tAnswerService.getAnswerInfo(paId));
     }
 
-    @GetMapping("/answer/question")
+    @GetMapping("/question")
     public ResultVO getAnswerQuestion(@RequestParam Long paId) {
         return ResultVO.success(tAnswerService.getAnswerTitleItem(paId));
     }
 
-    @PostMapping("/answer/submit")
+    @PostMapping("/submit")
     public ResultVO submitAnswer(@RequestBody TAnswerCheckInfoReqVO vo) {
         tAnswerService.submitCheckAnswer(vo);
         return ResultVO.success();

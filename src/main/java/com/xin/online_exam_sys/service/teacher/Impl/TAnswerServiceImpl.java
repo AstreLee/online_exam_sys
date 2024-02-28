@@ -37,6 +37,7 @@ public class TAnswerServiceImpl implements TAnswerService  {
     @Override
     public Map<String, Object> getStuIdsByTeacherId(TAnswerQueryInfoReqVO vo) {
         Long courseId = vo.getCourseId();
+        System.out.println("****" + courseId);
         Integer state = vo.getState();
         Integer pageNum = vo.getPageNum();
         Integer pageSize = vo.getPageSize();

@@ -9,12 +9,7 @@ import com.xin.online_exam_sys.service.teacher.TPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @author : AstreLee
- * @date : 2024/1/2 - 10:24
- * @file : TPaperController.java
- * @ide : IntelliJ IDEA
- */
+
 @RestController
 @RequestMapping("/teacher/paper")
 public class TPaperController {

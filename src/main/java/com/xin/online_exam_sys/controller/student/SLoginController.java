@@ -19,7 +19,7 @@ public class SLoginController {
     @Autowired
     private SLoginService sLoginService;
 
-    @Loggable
+    @Loggable("用户登录")
     @PostMapping("/login")
     public ResultVO login(@RequestBody UserLoginVO userLoginVO) {
         return sLoginService.getByIdAndPasswd(userLoginVO);

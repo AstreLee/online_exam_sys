@@ -46,7 +46,7 @@
             p_id AS "paperId",
             p_name AS "paperName",
             course_name AS "courseName",
-            DATE_FORMAT(p_created_time, '%Y-%m-%d %H:%i:%s') AS "createTime",
+            SUBSTRING_INDEX(DATE_FORMAT(p_created_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS "createTime",
             t_name AS "createUser"
         FROM paper p
             LEFT JOIN course c on p.course_id = c.course_id
@@ -91,8 +91,8 @@
         SELECT
             course_id AS "courseId",
             p_type AS "paperType",
-            DATE_FORMAT(p_start_time, '%Y-%m-%d %H:%i:%s') AS "startTime",
-            DATE_FORMAT(p_end_time, '%Y-%m-%d %H:%i:%s') AS "endTime",
+            SUBSTRING_INDEX(DATE_FORMAT(p_start_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS "startTime",
+            SUBSTRING_INDEX(DATE_FORMAT(p_end_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS "endTime",
             p_name AS "paperName",
             p_suggest_time AS "suggestTime"
         FROM paper
@@ -100,7 +100,7 @@
             p_id = #{paperId};
     </select>
 
-    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperAddQuestionTableResVO">
+    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO">
         <id column="q_id" property="questionId"/>
         <result column="q_content" property="content"/>
         <collection property="items" ofType="com.xin.online_exam_sys.pojo.vo.teacher.TQuestionOptionVO">
