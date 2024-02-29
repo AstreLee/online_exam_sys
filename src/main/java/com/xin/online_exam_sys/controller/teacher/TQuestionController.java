@@ -1,11 +1,10 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionFormReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.service.teacher.TQuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -14,8 +13,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/teacher/question")
 public class TQuestionController {
-    @Autowired
-    private TQuestionService tQuestionService;
+    private final TQuestionService tQuestionService;
+    public TQuestionController(TQuestionService tQuestionService) {
+        this.tQuestionService = tQuestionService;
+    }
 
     // 获取课程列表
     @GetMapping("/courseOptions")

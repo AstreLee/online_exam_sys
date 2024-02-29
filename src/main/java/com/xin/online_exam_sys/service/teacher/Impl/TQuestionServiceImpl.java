@@ -19,12 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/14 - 15:58
- * @file : TeacherQuestionServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class TQuestionServiceImpl implements TQuestionService {
     @Autowired

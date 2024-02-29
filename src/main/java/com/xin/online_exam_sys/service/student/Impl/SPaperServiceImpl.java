@@ -7,7 +7,6 @@ import com.xin.online_exam_sys.pojo.vo.student.req.SPaperFormReqVO;
 import com.xin.online_exam_sys.pojo.vo.student.res.*;
 import com.xin.online_exam_sys.service.student.SPaperService;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +16,10 @@ import java.util.Map;
 
 @Service
 public class SPaperServiceImpl implements SPaperService {
-    @Autowired
-    private SPaperMapper sPaperMapper;
+    private final SPaperMapper sPaperMapper;
+    public SPaperServiceImpl(SPaperMapper sPaperMapper) {
+        this.sPaperMapper = sPaperMapper;
+    }
     // 数据成员titleMap
     private Map<Integer, String> titleMap = new HashMap<>();
     // 代码块初始化

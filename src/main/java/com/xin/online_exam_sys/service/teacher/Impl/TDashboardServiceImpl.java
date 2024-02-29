@@ -9,12 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/17 - 16:53
- * @file : TeacherDashboardServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class TDashboardServiceImpl implements TDashboardService {
     @Autowired

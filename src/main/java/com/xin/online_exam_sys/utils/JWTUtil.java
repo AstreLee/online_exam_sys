@@ -8,12 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/3 - 23:21
- * @file : JWTUtils.java
- * @ide : IntelliJ IDEA
- */
+
 @Component
 public class JWTUtil {
     // 普通用户返回token

@@ -7,19 +7,15 @@ import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.pojo.vo.UserLoginVO;
 import com.xin.online_exam_sys.service.student.SLoginService;
 import com.xin.online_exam_sys.utils.JWTUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author : AstreLee
- * @date : 2024/1/13 - 20:37
- * @file : SLoginServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class SLoginServiceImpl implements SLoginService {
-    @Autowired
-    private SLoginMapper sLoginMapper;
+    private final SLoginMapper sLoginMapper;
+    public SLoginServiceImpl(SLoginMapper sLoginMapper) {
+        this.sLoginMapper = sLoginMapper;
+    }
 
     @Override
     public ResultVO getByIdAndPasswd(UserLoginVO userLoginVO) {

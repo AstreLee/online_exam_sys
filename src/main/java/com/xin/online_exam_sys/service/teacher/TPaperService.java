@@ -8,12 +8,7 @@ import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2024/1/2 - 10:22
- * @file : TeacherPaperService.java
- * @ide : IntelliJ IDEA
- */
+
 public interface TPaperService {
     List<TSelectOptionVO> getCourseOptions();
 

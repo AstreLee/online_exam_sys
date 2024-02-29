@@ -1,20 +1,22 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
+import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TPaperAddQuestionQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TPaperListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.service.teacher.TPaperService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/teacher/paper")
 public class TPaperController {
-    @Autowired
-    private TPaperService tPaperService;
+    private final TPaperService tPaperService;
+
+    public TPaperController(TPaperService tPaperService) {
+        this.tPaperService = tPaperService;
+    }
 
     @GetMapping("/courseOptions")
     public ResultVO getCourseOptions() {

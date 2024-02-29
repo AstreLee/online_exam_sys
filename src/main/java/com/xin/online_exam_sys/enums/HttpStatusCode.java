@@ -2,12 +2,6 @@ package com.xin.online_exam_sys.enums;
 
 import lombok.Getter;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/4 - 16:47
- * @file : HttpStatusCode.java
- * @ide : IntelliJ IDEA
- */
 @Getter
 public enum HttpStatusCode {
     // http状态码枚举所有状态码枚举

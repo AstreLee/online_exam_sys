@@ -5,12 +5,7 @@ import com.xin.online_exam_sys.pojo.vo.student.res.*;
 
 import java.util.List;
 
-/**
- * @author : AstreLee
- * @date : 2024/2/15 - 10:57
- * @file : SPaperService.java
- * @ide : IntelliJ IDEA
- */
+
 public interface SPaperService {
     // 获取试卷列表
     List<SPaperListResVO> getPaperList(Integer paperType);

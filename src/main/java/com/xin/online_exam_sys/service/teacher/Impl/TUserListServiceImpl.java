@@ -15,12 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/9 - 9:22
- * @file : UserListServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class TUserListServiceImpl implements TUserListService {
     @Autowired

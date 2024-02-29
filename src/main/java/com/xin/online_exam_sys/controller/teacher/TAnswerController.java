@@ -4,15 +4,17 @@ import com.xin.online_exam_sys.pojo.vo.ResultVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TAnswerCheckInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TAnswerQueryInfoReqVO;
 import com.xin.online_exam_sys.service.teacher.TAnswerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/teacher/answer")
 public class TAnswerController {
-    @Autowired
-    private TAnswerService tAnswerService;
+    private final TAnswerService tAnswerService;
+
+    public TAnswerController(TAnswerService tAnswerService) {
+        this.tAnswerService = tAnswerService;
+    }
 
     @PostMapping("/list")
     public ResultVO getAnswerList(@RequestBody TAnswerQueryInfoReqVO vo) {

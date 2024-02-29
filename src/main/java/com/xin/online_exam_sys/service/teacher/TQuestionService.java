@@ -8,12 +8,7 @@ import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/14 - 15:57
- * @file : TeacherQuestionService.java
- * @ide : IntelliJ IDEA
- */
+
 public interface TQuestionService {
     // 获取所有课程集合
     List<TSelectOptionVO> getCourseOptions();

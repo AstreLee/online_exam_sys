@@ -12,12 +12,7 @@ import com.xin.online_exam_sys.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/4 - 16:25
- * @file : LoginServiceImpl.java
- * @ide : IntelliJ IDEA
- */
+
 @Service
 public class TLoginServiceImpl implements TLoginService {
     @Autowired

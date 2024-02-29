@@ -1,11 +1,10 @@
 package com.xin.online_exam_sys.controller.teacher;
 
 import com.xin.online_exam_sys.enums.HttpStatusCode;
-import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.ResultVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 import com.xin.online_exam_sys.service.teacher.TUserListService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -14,8 +13,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/teacher/user/list")
 public class TUserListController {
-    @Autowired
-    private TUserListService tUserListService;
+    private final TUserListService tUserListService;
+
+    public TUserListController(TUserListService tUserListService) {
+        this.tUserListService = tUserListService;
+    }
 
     @PostMapping("/gradeOption")
     public ResultVO getGradeOption(@RequestBody TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {

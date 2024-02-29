@@ -7,12 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * @author : AstreLee
- * @date : 2023/12/4 9:05
- * @file : SignatureException.java
- * @ide : IntelliJ IDEA
- */
 
 @RestControllerAdvice
 @NoArgsConstructor
