@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xin.online_exam_sys.dao.teacher.TMessMapper">
+    <insert id="insertMess">
+        INSERT INTO mess VALUES(NULL, #{messSendId}, #{messRecvType}, #{messRecvId}, #{messSendTime}, #{messTitle}, #{messContent});
+    </insert>
+
     <select id="selectMessList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TMessListResVO">
        (SELECT
            m.mess_id AS messageId,
@@ -12,7 +16,7 @@
            SUBSTRING_INDEX(DATE_FORMAT(m.mess_send_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS messageTime,
            m.mess_title AS messageTitle,
            m.mess_content AS messageContent
-       FROM message m
+       FROM mess m
            LEFT JOIN student s ON s.stu_id = m.mess_revc_id
         LEFT JOIN mess_confirm mc on m.mess_id = mc.mess_id
         WHERE
@@ -29,7 +33,7 @@
            SUBSTRING_INDEX(DATE_FORMAT(m.mess_send_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS messageTime,
            m.mess_title AS messageTitle,
            m.mess_content AS messageContent
-       FROM message m
+       FROM mess m
                 LEFT JOIN class c on c.class_id = m.mess_revc_id
                 LEFT JOIN mess_confirm mc on m.mess_id = mc.mess_id
        WHERE
@@ -37,5 +41,25 @@
          AND m.mess_send_id = #{tId}
        GROUP BY
            mc.mess_id)
+    </select>
+
+    <select id="selectClassList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO">
+        SELECT class_id   AS value,
+               class_name AS label
+        FROM class
+        WHERE class_id IN (SELECT DISTINCT(tcc.class_id)
+                           FROM teacher_class_course tcc
+                                    LEFT JOIN class c ON tcc.class_id = c.class_id
+                           WHERE tcc.t_id = #{tId})
+    </select>
+
+    <select id="selectStuList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TCascaderOptionVO">
+        SELECT
+            s.stu_id AS value,
+            s.stu_name AS label
+        FROM
+            student s
+        WHERE
+            s.class_id = #{classId}
     </select>
 </mapper>

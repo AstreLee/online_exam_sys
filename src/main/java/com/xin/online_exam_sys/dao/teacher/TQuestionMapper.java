@@ -4,7 +4,7 @@ import com.xin.online_exam_sys.pojo.entity.Question;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionFormReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionFormResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionListResVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @Mapper
 public interface TQuestionMapper {
     // 获取课程集合
-    List<TSelectOptionResVO> selectCourseOptions(@Param("tId") Long tId);
+    List<TSelectOptionVO> selectCourseOptions(@Param("tId") Long tId);
 
     // 添加题目
     void insertQuestion(Question question);

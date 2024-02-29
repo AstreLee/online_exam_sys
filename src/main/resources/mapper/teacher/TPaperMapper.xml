@@ -20,7 +20,7 @@
     </insert>
 
     <select id="selectCourseOptions"
-            resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO">
+            resultType="com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO">
         SELECT DISTINCT c.course_name AS "label",
                         c.course_id   AS "value"
         FROM course c

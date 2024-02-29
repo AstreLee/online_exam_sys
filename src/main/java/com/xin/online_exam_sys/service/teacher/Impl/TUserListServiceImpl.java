@@ -2,7 +2,7 @@ package com.xin.online_exam_sys.service.teacher.Impl;
 
 import com.xin.online_exam_sys.dao.teacher.TUserListMapper;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserListInfoResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 import com.xin.online_exam_sys.service.teacher.TUserListService;
@@ -27,24 +27,24 @@ public class TUserListServiceImpl implements TUserListService {
     private TUserListMapper tUserListMapper;
 
     @Override
-    public List<TSelectOptionResVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
+    public List<TSelectOptionVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Long userId = teacherUserListQueryInfoReqVO.getUserId();
         Long classId = teacherUserListQueryInfoReqVO.getClassId();
         Long t_id = JWTContextUtil.getCurrentId();
         if (userId != null) {
             classId = null;
         }
-        List<Integer> gradeLists = tUserListMapper.selectGradeOptions(userId, classId, t_id);
-        List<TSelectOptionResVO> ans = new ArrayList<>();
-        for (Integer grade : gradeLists) {
+        List<Long> gradeLists = tUserListMapper.selectGradeOptions(userId, classId, t_id);
+        List<TSelectOptionVO> ans = new ArrayList<>();
+        for (Long grade : gradeLists) {
             String label = "20" + grade + "级";
-            ans.add(new TSelectOptionResVO(label, grade));
+            ans.add(new TSelectOptionVO(label, grade));
         }
         return ans;
     }
 
     @Override
-    public List<TSelectOptionResVO> getClassOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
+    public List<TSelectOptionVO> getClassOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO) {
         Long userId = teacherUserListQueryInfoReqVO.getUserId();
         Integer grade = teacherUserListQueryInfoReqVO.getGrade();
         Long t_id = JWTContextUtil.getCurrentId();

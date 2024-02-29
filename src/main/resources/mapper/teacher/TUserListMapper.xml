@@ -13,7 +13,7 @@
             stu_id = #{userId};
     </update>
 
-    <select id="selectGradeOptions" resultType="integer">
+    <select id="selectGradeOptions" resultType="long">
         SELECT DISTINCT c.class_grade
         FROM student s
                  JOIN
@@ -25,7 +25,7 @@
           AND tcc.t_id = #{tId};
     </select>
 
-    <select id="selectClassOptions" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO">
+    <select id="selectClassOptions" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO">
         SELECT DISTINCT c.class_name AS "label",
                         c.class_id   AS "value"
         FROM student s

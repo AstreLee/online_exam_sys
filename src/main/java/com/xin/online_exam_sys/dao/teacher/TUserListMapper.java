@@ -1,6 +1,6 @@
 package com.xin.online_exam_sys.dao.teacher;
 
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserListInfoResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,9 +16,9 @@ import java.util.List;
  */
 @Mapper
 public interface TUserListMapper {
-    List<Integer> selectGradeOptions(@Param("userId") Long userId, @Param("classId") Long classId, @Param("tId") Long tId);
+    List<Long> selectGradeOptions(@Param("userId") Long userId, @Param("classId") Long classId, @Param("tId") Long tId);
 
-    List<TSelectOptionResVO> selectClassOptions(@Param("userId") Long userId, @Param("grade") Integer grade, @Param("tId") Long tId);
+    List<TSelectOptionVO> selectClassOptions(@Param("userId") Long userId, @Param("grade") Integer grade, @Param("tId") Long tId);
 
     List<TUserListInfoResVO> selectList(@Param("userId") Long userId, @Param("grade") Integer grade, @Param("classId") Long classId, @Param("tId") Long tId);
 

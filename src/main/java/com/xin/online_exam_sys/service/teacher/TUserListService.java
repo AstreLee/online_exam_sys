@@ -1,7 +1,7 @@
 package com.xin.online_exam_sys.service.teacher;
 
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TUserListQueryInfoReqVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TUserUpdateInfoResVO;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.Map;
  * @ide : IntelliJ IDEA
  */
 public interface TUserListService {
-    List<TSelectOptionResVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
+    List<TSelectOptionVO> getGradeOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 
-    List<TSelectOptionResVO> getClassOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
+    List<TSelectOptionVO> getClassOptions(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 
     Map<String, Object> getList(TUserListQueryInfoReqVO teacherUserListQueryInfoReqVO);
 

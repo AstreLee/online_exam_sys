@@ -7,7 +7,7 @@ import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormTitleItemsVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperAddQuestionTableResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperListResVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.*;
 import com.xin.online_exam_sys.service.teacher.TPaperService;
 import com.xin.online_exam_sys.utils.DateTimeUtil;
@@ -28,7 +28,7 @@ public class TPaperServiceImpl implements TPaperService {
     private TPaperMapper tPaperMapper;
 
     @Override
-    public List<TSelectOptionResVO> getCourseOptions() {
+    public List<TSelectOptionVO> getCourseOptions() {
         Long tId = JWTContextUtil.getCurrentId();
         return tPaperMapper.selectCourseOptions(tId);
     }

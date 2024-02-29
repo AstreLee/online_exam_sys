@@ -15,12 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : AstreLee
- * @date : 2024/2/15 - 10:58
- * @file : SPaperServiceImpl.java
- * @ide : IntelliJ IDEA
- */
 @Service
 public class SPaperServiceImpl implements SPaperService {
     @Autowired

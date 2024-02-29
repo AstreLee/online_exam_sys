@@ -5,7 +5,7 @@ import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperAddQuestionTableResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperListResVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @Mapper
 public interface TPaperMapper {
     // 查询课程选项
-    List<TSelectOptionResVO> selectCourseOptions(@Param("tId") Long tId);
+    List<TSelectOptionVO> selectCourseOptions(@Param("tId") Long tId);
 
     // 查询试题
     List<TPaperAddQuestionTableResVO> selectQuestions(@Param("questionId") Long questionId, @Param("courseId") Long courseId, @Param("questionType") Integer questionType);

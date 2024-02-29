@@ -45,7 +45,7 @@
             SUM(pqa.pqa_score) AS totalScore,
             pa.pa_state AS state,
             pa.pa_do_time AS doTime,
-            pa.pa_submit_time AS submitTime,
+            SUBSTRING_INDEX(DATE_FORMAT(pa.pa_submit_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS submitTime,
             cs.course_name AS courseName
         FROM
             paper_answer pa

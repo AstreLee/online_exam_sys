@@ -7,7 +7,7 @@ import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionListQueryInfoReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.req.TQuestionOptionReqVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionFormResVO;
 import com.xin.online_exam_sys.pojo.vo.teacher.res.TQuestionListResVO;
-import com.xin.online_exam_sys.pojo.vo.teacher.res.TSelectOptionResVO;
+import com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO;
 import com.xin.online_exam_sys.service.teacher.TQuestionService;
 import com.xin.online_exam_sys.utils.DateTimeUtil;
 import com.xin.online_exam_sys.utils.JWTContextUtil;
@@ -30,7 +30,7 @@ public class TQuestionServiceImpl implements TQuestionService {
     @Autowired
     private TQuestionMapper tQuestionMapper;
     @Override
-    public List<TSelectOptionResVO> getCourseOptions() {
+    public List<TSelectOptionVO> getCourseOptions() {
         Long tId = JWTContextUtil.getCurrentId();
         return tQuestionMapper.selectCourseOptions(tId);
     }
