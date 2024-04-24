@@ -15,7 +15,7 @@
 
     <update id="updatePaperAnswer">
         UPDATE paper_answer
-        SET pa_sum_score = #{sumScore}, pa_right_num = #{sumRight}
+        SET pa_sum_score = #{sumScore}, pa_right_num = #{sumRight}, pa_state = #{paState}
         WHERE pa_id = #{paId}
     </update>
 
@@ -26,17 +26,24 @@
             c.course_name AS courseName,
             p.p_sum_num AS totalNum,
             p.p_suggest_time AS suggestTime,
+            t.task_type AS taskType,
             SUBSTRING_INDEX(DATE_FORMAT(p.p_start_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS startTime,
             SUBSTRING_INDEX(DATE_FORMAT(p.p_end_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS endTime
         FROM
             paper p
             LEFT JOIN course c ON p.course_id = c.course_id
+            LEFT JOIN task t on p.p_id = t.p_id
         WHERE
             p.p_id IN
         <foreach collection="paperIds" item="paperId" separator="," open="(" close=")">
             #{paperId}
         </foreach>
             AND p.p_type = #{paperType}
+            AND (
+                t.task_type = 0 AND t.stu_id = #{stuId}
+                OR
+                t.task_type = 1 AND t.class_id = #{classId}
+            )
     </select>
 
     <select id="selectStudentPapersId" resultType="java.lang.Long">

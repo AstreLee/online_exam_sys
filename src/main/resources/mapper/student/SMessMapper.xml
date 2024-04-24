@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.student.SMessMapper">
+    <insert id="insertMessConfirm">
+        INSERT INTO mess_confirm VALUES(NULL, #{messId}, #{stuId}, #{confirmTime})
+    </insert>
+
+    <select id="selectMessList" resultType="com.xin.online_exam_sys.pojo.vo.student.res.SMessListResVO">
+        SELECT
+            m.mess_id AS messId,
+            m.mess_recv_type AS messType,
+            t.t_name AS messSendUser,
+            SUBSTRING_INDEX(DATE_FORMAT(m.mess_send_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS messSendTime,
+            m.mess_title AS messTitle,
+            m.mess_content AS messContent,
+            COUNT(mc.mess_id) AS readNum,
+            SUBSTRING_INDEX(DATE_FORMAT(mc.mess_confirm_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS messConfirmTime
+        FROM
+            mess m
+            LEFT JOIN teacher t ON m.mess_send_id = t.t_id
+            LEFT JOIN mess_confirm mc ON m.mess_id = mc.mess_id
+        WHERE
+            m.mess_id IN
+            <foreach collection="messIds" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        GROUP BY
+            m.mess_id
+    </select>
+
+    <select id="selectMessIdList" resultType="java.lang.Long">
+        SELECT
+            mess_id
+        FROM
+            mess
+        WHERE
+            mess_recv_type = #{messType}
+        AND
+            mess_revc_id = #{id}
+    </select>
+
+    <select id="isRead" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            mess_confirm
+        WHERE
+            mess_id = #{messId}
+        AND
+            stu_id = #{stuId}
+    </select>
+
+    <select id="selectClassId" resultType="java.lang.Long">
+        SELECT
+            class_id
+        FROM
+            student
+        WHERE
+            stu_id = #{stuId}
+    </select>
+</mapper>

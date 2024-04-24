@@ -23,7 +23,7 @@ public interface SPaperMapper {
     Long selectClassIdByPaperId(Long paperId);
 
     // 获取试卷列表
-    List<SPaperListResVO> selectPaperList(Integer paperType, List<Long> paperIds);
+    List<SPaperListResVO> selectPaperList(Integer paperType, List<Long> paperIds, Long stuId, Long classId);
 
     // 获取试卷信息
     SPaperInfoResVO selectPaperInfo(Long paperId);
@@ -44,7 +44,7 @@ public interface SPaperMapper {
     void saveQuestionAnswer(PaperQuestionAnswer pqa);
 
     // 更新答卷信息
-    void updatePaperAnswer(Long paId, Double sumScore, Integer sumRight);
+    void updatePaperAnswer(Long paId, Double sumScore, Integer sumRight, Integer paState);
 
 
     // 查询答卷记录信息

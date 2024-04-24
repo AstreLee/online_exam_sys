@@ -36,7 +36,7 @@ public class TLogServiceImpl implements TLogService {
             res.put("total", 0);
         } else {
             res.put("data", resList);
-            res.put("total", resList.size());
+            res.put("total", list.size());
         }
         return res;
     }

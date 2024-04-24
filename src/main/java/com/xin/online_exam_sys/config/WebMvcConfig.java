@@ -1,7 +1,6 @@
 package com.xin.online_exam_sys.config;
 
 import com.xin.online_exam_sys.interceptor.TokenInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,12 +9,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     // 配置jwt拦截器
-    @Autowired
-    private TokenInterceptor tokenInterceptor ;
+    private final TokenInterceptor tokenInterceptor ;
+
+    public WebMvcConfig(TokenInterceptor tokenInterceptor) {
+        this.tokenInterceptor = tokenInterceptor;
+    }
+
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/teacher/login", "/student/login", "/admin/login");
+                .excludePathPatterns("/teacher/login", "/student/login");
     }
 
     // 配置跨域

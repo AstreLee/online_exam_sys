@@ -35,7 +35,7 @@ public class TMessServiceImpl implements TMessService {
             map.put("total", 0);
         } else {
             map.put("list", res);
-            map.put("total", res.size());
+            map.put("total", result.size());
         }
         return map;
     }

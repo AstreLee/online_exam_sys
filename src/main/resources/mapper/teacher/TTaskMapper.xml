@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xin.online_exam_sys.dao.teacher.TTaskMapper">
+    <insert id="insertTask">
+        INSERT INTO task VALUES(NULL, #{taskType}, #{pId}, #{stuId}, #{classId}, #{taskCreatedId}, #{taskCreatedTime});
+    </insert>
+
+    <select id="selectClassList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO">
+        SELECT class_id   AS value,
+               class_name AS label
+        FROM class
+        WHERE class_id IN (SELECT DISTINCT(tcc.class_id)
+                           FROM teacher_class_course tcc
+                                    LEFT JOIN class c ON tcc.class_id = c.class_id
+                           WHERE tcc.t_id = #{tId})
+    </select>
+
+    <select id="selectStuList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TCascaderOptionVO">
+        SELECT
+            s.stu_id AS value,
+            s.stu_name AS label
+        FROM
+            student s
+        WHERE
+            s.class_id = #{classId}
+    </select>
+
+    <select id="selectPaperList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.TSelectOptionVO">
+        SELECT
+            p.p_id AS value,
+            p.p_name AS label
+        FROM
+            paper p
+        WHERE
+            p.p_created_user = #{tId}
+    </select>
+
+    <select id="selectTaskList" resultType="com.xin.online_exam_sys.pojo.vo.teacher.res.TTaskTableResVO">
+        SELECT
+            t.task_id AS taskId,
+            t.task_type AS taskType,
+            p.p_name AS taskPaperName,
+            IF(t.task_type = 1, c.class_name, s.stu_name) AS taskRecvName,
+            tea.t_name AS taskCreatedUser,
+            SUBSTRING_INDEX(DATE_FORMAT(t.task_created_time, '%Y-%m-%d %H:%i:%s'), '.', 1) AS taskCreatedTime
+        FROM
+            task t
+            LEFT JOIN teacher tea ON t.task_created_id = tea.t_id
+            LEFT JOIN paper p ON t.p_id = p.p_id
+            LEFT JOIN student s ON t.stu_id = s.stu_id
+            LEFT JOIN class c ON t.class_id = c.class_id
+        WHERE
+            t.task_created_id = #{tId}
+    </select>
+</mapper>

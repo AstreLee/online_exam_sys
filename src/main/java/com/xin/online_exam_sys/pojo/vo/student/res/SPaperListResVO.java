@@ -21,4 +21,5 @@ public class SPaperListResVO {
     private Integer suggestTime;
     private String startTime;
     private String endTime;
+    private Integer taskType;
 }

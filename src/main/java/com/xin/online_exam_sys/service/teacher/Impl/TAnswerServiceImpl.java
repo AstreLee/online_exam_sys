@@ -55,7 +55,7 @@ public class TAnswerServiceImpl implements TAnswerService  {
         }
         Map<String, Object> res = new HashMap<>();
         res.put("list", newResult);
-        res.put("total", newResult.size());
+        res.put("total", result.size());
         return res;
     }
 

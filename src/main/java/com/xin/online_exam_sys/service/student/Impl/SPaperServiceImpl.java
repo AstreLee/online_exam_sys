@@ -51,7 +51,7 @@ public class SPaperServiceImpl implements SPaperService {
         if (unfinishedPaperIds.isEmpty()) {
             return null;
         } else {
-            return sPaperMapper.selectPaperList(paperType, unfinishedPaperIds);
+            return sPaperMapper.selectPaperList(paperType, unfinishedPaperIds, studentId, classId);
         }
     }
 
@@ -129,7 +129,16 @@ public class SPaperServiceImpl implements SPaperService {
             }
         }
         // 更新答卷信息
-        sPaperMapper.updatePaperAnswer(paperAnswerId, sumScore, rightNum);
+        Integer isRead = 1;
+        for (int i = 0; i < reqVO.getPaperAnswer().size(); i++) {
+            if (i > 2) {
+                if (!reqVO.getPaperAnswer().get(i).isEmpty()) {
+                    isRead = 0;
+                    break;
+                }
+            }
+        }
+        sPaperMapper.updatePaperAnswer(paperAnswerId, sumScore, rightNum, isRead);
     }
 
     @Override

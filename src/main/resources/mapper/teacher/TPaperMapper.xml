@@ -30,7 +30,7 @@
     </select>
 
     <select id="selectQuestions"
-            resultMap="questionResultMap">
+            resultMap="questionResultMap1">
         SELECT *
         FROM question q
                  LEFT JOIN
@@ -77,7 +77,7 @@
     </select>
 
     <select id="selectQuestionDetail"
-            resultMap="questionResultMap">
+            resultMap="questionResultMap2">
         SELECT *
         FROM question q
             LEFT JOIN `option` o on q.q_id = o.q_id
@@ -100,7 +100,17 @@
             p_id = #{paperId};
     </select>
 
-    <resultMap id="questionResultMap" type="com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO">
+    <resultMap id="questionResultMap1" type="com.xin.online_exam_sys.pojo.vo.teacher.res.TPaperAddQuestionTableResVO">
+        <id column="q_id" property="questionId"/>
+        <result column="q_content" property="content"/>
+        <collection property="items" ofType="com.xin.online_exam_sys.pojo.vo.teacher.TQuestionOptionVO">
+            <result column="q_id" property="questionId"/>
+            <result column="option_content" property="content"/>
+            <result column="option_order" property="order"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="questionResultMap2" type="com.xin.online_exam_sys.pojo.vo.teacher.TPaperAddFormQuestionItemsVO">
         <id column="q_id" property="questionId"/>
         <result column="q_content" property="content"/>
         <collection property="items" ofType="com.xin.online_exam_sys.pojo.vo.teacher.TQuestionOptionVO">
